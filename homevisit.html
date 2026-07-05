@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Home Visit Check-up</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins,sans-serif;
+}
+
+body{
+    background:#eef3f9;
+    display:flex;
+}
+
+.sidebar{
+    width:250px;
+    background:#0b166e;
+    min-height:100vh;
+    position:fixed;
+    left:0;
+    top:0;
+}
+
+.sidebar a{
+    display:block;
+    color:#fff;
+    text-decoration:none;
+    padding:16px 20px;
+    transition:.3s;
+}
+
+.sidebar a:hover{
+    background:#DC143C;
+}
+
+.main-content{
+    margin-left:250px;
+    width:calc(100% - 250px);
+}
+
+.header{
+    background:#fff;
+    color:#0f0f0f;
+    text-align:center;
+    padding:20px;
+    font-size:24px;
+    font-weight:600;
+}
+
+.container{
+    max-width:1100px;
+    margin:30px auto;
+    padding:20px;
+}
+
+.card{
+    background:#fff;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.12);
+    overflow:hidden;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#0B6E4F;
+    color:#fff;
+    padding:15px;
+    text-align:left;
+}
+
+td{
+    padding:15px;
+    border-bottom:1px solid #ddd;
+}
+
+tr:nth-child(even){
+    background:#f8f8f8;
+}
+
+tr:hover{
+    background:#e7f5ef;
+}
+
+.status{
+    font-weight:bold;
+    color:#0B6E4F;
+}
+
+.footer{
+    text-align:center;
+    padding:20px;
+    color:#777;
+}
+
+@media (max-width:768px){
+
+.sidebar{
+    position:fixed;
+    left:-250px;
+    width:250px;
+    transition:.3s;
+    z-index:1000;
+}
+
+.sidebar.active{
+    left:0;
+}
+
+.main-content{
+    margin-left:0;
+    width:100%;
+}
+
+.container{
+    width:100%;
+    padding:10px;
+}
+
+table{
+    display:block;
+    overflow-x:auto;
+    white-space:nowrap;
+}
+
+.card{
+    padding:15px;
+}
+
+
+
+
+.container{
+    padding:10px;
+}
+
+table{
+    font-size:14px;
+}
+
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#eef3f9;
+}
+
+.header{
+background:#fff;
+color:#0f0f0f;
+padding:18px;
+text-align:center;
+font-size:24px;
+font-weight:600;
+}
+
+.container{
+width:95%;
+max-width:1300px;
+margin:auto;
+padding:20px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 5px 15px rgba(0,0,0,.12);
+}
+
+.section-title{
+font-size:18px;
+margin-bottom:15px;
+font-weight:600;
+color:#DC143C;
+padding-left:10px;
+}
+
+.form-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:15px;
+}
+
+.form-group{
+display:flex;
+flex-direction:column;
+}
+
+label{
+margin-bottom:6px;
+font-weight:500;
+}
+
+input,select,textarea{
+padding:10px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:15px;
+}
+
+textarea{
+resize:vertical;
+min-height:90px;
+}
+
+.vitals{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+gap:10px;
+}
+
+button{
+margin-top:20px;
+padding:15px;
+width:100%;
+border:none;
+background:#0b166e;
+color:white;
+font-size:18px;
+border-radius:8px;
+cursor:pointer;
+}
+
+button:hover{
+background:#DC143C;
+}
+
+.footer{
+text-align:center;
+padding:15px;
+color:#777;
+font-size:14px;
+}
+
+@media(max-width:768px){
+
+.header{
+font-size:20px;
+padding:15px;
+}
+
+.card{
+padding:5px;
+}
+
+}
+
+.sidebar-card{
+
+background:#ffffff20;
+
+margin:15px;
+
+padding:15px;
+
+border-radius:10px;
+
+text-align:center;
+
+color:white;
+
+}
+
+.counter{
+
+background:white;
+
+color:#0B6E4F;
+
+padding:15px;
+
+border-radius:8px;
+
+margin-top:10px;
+
+}
+
+.counter h2{
+
+font-size:34px;
+
+margin-top:5px;
+
+}
+
+.dashboard{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+margin-top:5px;
+
+}
+
+.dashboard-card{
+
+width:360px;
+
+background:white;
+
+border-radius:5px;
+
+padding:5px;
+
+text-align:center;
+
+box-shadow:0 0px 20px rgba(0,0,0,.15);
+
+border-left:0px solid #0B6E4F;
+
+}
+
+.card-icon{
+
+font-size:50px;
+
+margin-bottom:10px;
+
+}
+
+.card-title{
+
+font-size:18px;
+
+font-weight:bold;
+
+color:#555;
+
+}
+
+.card-number{
+
+font-size:72px;
+
+font-weight:bold;
+
+color:#0B6E4F;
+
+margin:20px 0;
+
+}
+
+.card-footer{
+
+font-size:14px;
+
+color:#888;
+
+}
+
+@media(max-width:768px){
+
+.dashboard-card{
+
+width:95%;
+
+}
+
+.card-number{
+
+font-size:48px;
+
+}
+
+}
+
+
+
+.topnav{
+background:#0b166e;
+display:flex;
+justify-content:center;
+gap:10px;
+padding:12px 20px;
+flex-wrap:wrap;
+}
+.topnav a{
+color:#fff;
+text-decoration:none;
+padding:10px 16px;
+border-radius:6px;
+font-weight:500;
+}
+.topnav a:hover{background:#DC143C;}
+@media(max-width:768px){
+.topnav{justify-content:flex-start;}
+}
+
+</style>
+
+
+<style id="chatgpt-responsive-patch">
+html{font-size:16px}
+img{max-width:100%;height:auto}
+table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media (max-width:768px){
+body{display:block!important}
+.sidebar{position:relative!important;left:0!important;width:100%!important;min-height:auto!important;height:auto!important}
+.main,.main-content{margin-left:0!important;width:100%!important}
+.header{padding:14px!important;font-size:20px!important}
+.container{width:100%!important;max-width:100%!important;padding:12px!important}
+.card{padding:16px!important}
+.form-grid,.vitals,.cards,.content,.actions,.level{
+display:grid!important;
+grid-template-columns:1fr!important;
+gap:12px!important}
+input,select,textarea,button{width:100%!important;font-size:16px}
+}
+</style>
+
+
+<style>
+body{display:block!important}
+.sidebar{display:none!important}
+.main,.main-content{margin-left:0!important;width:100%!important}
+</style>
+</head>
+
+<body>
+<div class="topnav">
+<a href="index.html">📊 Dashboard</a>
+<a href="referral.html">📄 Patient Referral</a>
+<a href="ambulance.html">🚑 Emergency Medical Transport Services</a>
+<a href="homevisit.html">👨‍⚕️Home Visit Check-up Services</a>
+</div>
+
+<div class="main-content">
+
+<div class="header">
+👨‍⚕️Home Visit Check-up Services
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<form id="patientForm">
+
+<div class="section-title">
+Patient Information
+</div>
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>Date & Time</label>
+<input type="datetime-local" name="datetime" required>
+</div>
+
+<div class="form-group">
+<label>Full Name</label>
+<input type="text" name="fullname" required>
+</div>
+
+<div class="form-group">
+<label>Age</label>
+<input type="number" name="age" required>
+</div>
+
+<div class="form-group">
+<label>Gender</label>
+<select name="gender">
+<option>Male</option>
+<option>Female</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Address</label>
+<input type="text" name="address">
+</div>
+
+<div class="form-group">
+<label>Baranggay</label>
+<select name="barangay">
+<option>Bagong Nayon</option>
+<option>Beverly Hills</option>
+<option>Calawis</option>
+<option>Cupang</option>
+<option>Dalig</option>
+<option>Dela Paz</option>
+<option>Inarawan</option>
+<option>Mambugan</option>
+<option>Mayamot</option>
+<option>Muntindilaw</option>
+<option>San Isidro</option>
+<option>San Jose</option>
+<option>San Juan</option>
+<option>San Luis</option>
+<option>San Roque</option>
+<option>Santa Cruz</option>
+<option>Other</option>
+</select>
+</div>
+
+
+<div class="form-group">
+<label>Contact Number</label>
+<input type="text" name="contact">
+</div>
+
+<div class="form-group">
+<label>Contact Person</label>
+<input type="text" name="contactperson">
+</div>
+
+</div>
+
+<br>
+<div class="section-title">
+Medical Information
+</div>
+
+<div class="form-grid">
+
+
+<div class="form-group">
+<label>Medical Diagnosis</label>
+<textarea name="diagnosis"></textarea>
+</div>
+
+<div class="form-group">
+<label>Chief Complaint</label>
+<textarea name="complaint"></textarea>
+</div>
+
+<div class="form-group">
+<label>Last Checkup</label>
+<textarea name="lastcheckup"></textarea>
+</div>
+
+<div class="form-group">
+<label>Status of the Patient</label>
+<select name="status">
+<option>Bedridden o Nakahiga na lang</option>
+<option>Ambulatory / Nakakalakad</option>
+</select>
+</div>
+
+
+
+</div>
+<br>
+
+
+
+
+
+
+</div>
+
+<br>
+
+
+
+<br>
+
+
+</div>
+
+<button type="submit">
+Save Patient Record
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+<div class="footer">
+Antipolo Patient Navigation & Referral System <br>Coded by: Erwin R. Alincastre. All Rights Reserved.
+</div>
+
+</div>
+
+<script>
+
+const scriptURL="https://script.google.com/macros/s/AKfycbxwR5TLAp-nj0KjUcwcOzheYBfVTEDz7xQMZjVJwGhWFhqjbkg8gyq5t_girZZx2fFUQg/exec";
+
+document.getElementById("patientForm").addEventListener("submit",e=>{
+
+e.preventDefault();
+
+fetch(scriptURL,{
+method:"POST",
+body:new FormData(document.getElementById("patientForm"))
+})
+.then(response=>{
+alert("Patient record saved successfully.");
+document.getElementById("patientForm").reset();
+})
+.catch(error=>{
+alert("Error saving data.");
+});
+
+});
+
+</script>
+
+
+<script>
+function updateDateTime(){
+
+const now = new Date();
+
+const days = [
+"Sunday",
+"Monday",
+"Tuesday",
+"Wednesday",
+"Thursday",
+"Friday",
+"Saturday"
+];
+
+const months = [
+"January",
+"February",
+"March",
+"April",
+"May",
+"June",
+"July",
+"August",
+"September",
+"October",
+"November",
+"December"
+];
+
+document.getElementById("day").innerHTML =
+days[now.getDay()];
+
+document.getElementById("date").innerHTML =
+months[now.getMonth()]+" "+
+now.getDate()+", "+
+now.getFullYear();
+
+document.getElementById("time").innerHTML =
+now.toLocaleTimeString("en-PH",{
+hour:"2-digit",
+minute:"2-digit",
+second:"2-digit",
+hour12:true
+});
+
+}
+
+updateDateTime();
+
+setInterval(updateDateTime,1000);
+</script>
+
+</body>
+</html>

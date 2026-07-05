@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Antipolo City Health Office</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+.footer{
+text-align:center;
+padding:15px;
+color:#777;
+font-size:14px;
+}
+
+body{
+background:#eef2f7;
+display:flex;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+width:250px;
+background:#0b166e;
+color:white;
+height:100vh;
+position:fixed;
+left:0;
+top:0;
+overflow:auto;
+}
+
+.logo{
+padding:25px;
+text-align:center;
+font-size:22px;
+font-weight:bold;
+border-bottom:1px solid rgba(255,255,255,.2);
+}
+
+.menu{
+list-style:none;
+}
+
+.menu li{
+border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.menu li a{
+display:block;
+padding:16px 20px;
+color:white;
+text-decoration:none;
+transition:.3s;
+}
+
+.menu li a:hover{
+background:#DC143C;
+padding-left:30px;
+}
+
+/* MAIN */
+
+.main{
+margin-left:250px;
+width:calc(100% - 250px);
+}
+
+/* HEADER */
+
+.header{
+
+background:white;
+
+padding:18px 30px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+box-shadow:0 2px 10px rgba(0,0,0,.08);
+
+}
+
+.header h2{
+
+color:#0f0f0f;
+
+}
+
+.user{
+
+font-weight:bold;
+
+}
+
+/* CARDS */
+
+.cards{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+gap:20px;
+
+padding:25px;
+
+}
+
+.card{
+
+background:white;
+
+border-radius:10px;
+
+padding:20px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.card h3{
+
+color:#0b166e;
+
+font-size:16px;
+
+}
+
+.card h1{
+
+font-size:40px;
+
+margin-top:10px;
+
+color:#DC143C;
+
+}
+
+/* CONTENT */
+
+.content{
+
+display:grid;
+
+grid-template-columns:2fr 1fr;
+
+gap:20px;
+
+padding:0 25px 25px;
+
+}
+
+/* TABLE */
+
+.table-card{
+
+background:white;
+
+padding:20px;
+
+border-radius:10px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+margin-top:15px;
+
+}
+
+table th{
+
+background:#0b166e;
+
+color:white;
+
+padding:12px;
+
+}
+
+table td{
+
+padding:12px;
+
+border-bottom:1px solid #ddd;
+
+}
+
+/* STATUS */
+
+.status-card{
+
+background:white;
+
+padding:20px;
+
+border-radius:10px;
+
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.status{
+
+display:flex;
+
+justify-content:space-between;
+
+padding:15px;
+
+border-bottom:1px solid #eee;
+
+}
+
+.available{
+
+color:green;
+
+font-weight:bold;
+
+}
+
+.onduty{
+
+color:red;
+
+font-weight:bold;
+
+}
+
+.returning{
+
+color:orange;
+
+font-weight:bold;
+
+}
+
+/* QUICK BUTTONS */
+
+.actions{
+
+padding:0 25px 25px;
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+
+gap:15px;
+
+}
+
+.actions a{
+
+background:#0b166e;
+
+color:white;
+
+padding:18px;
+
+border-radius:8px;
+
+text-align:center;
+
+text-decoration:none;
+
+font-weight:bold;
+
+transition:.3s;
+
+}
+
+.actions a:hover{
+
+background:#DC143C;
+
+}
+
+@media(max-width:900px){
+
+.sidebar{
+
+width:220px;
+
+}
+
+.main{
+
+margin-left:220px;
+
+width:calc(100% - 220px);
+
+}
+
+.content{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:700px){
+
+.sidebar{
+
+position:relative;
+
+width:100%;
+
+height:auto;
+
+}
+
+.main{
+
+margin-left:0;
+
+width:100%;
+
+}
+
+}
+
+// weather css]
+.weather-card{
+    background:#eef7ff;
+    border-radius:10px;
+    padding:15px;
+    margin-top:15px;
+}
+
+.forecast-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:15px;
+}
+
+.forecast-item{
+    background:#f5f9fc;
+    border-radius:10px;
+    padding:12px;
+    text-align:center;
+}
+
+.alert-panel{
+    margin-top:20px;
+    padding:15px;
+    border-left:6px solid #d32f2f;
+    background:#fff4f4;
+    color:#b71c1c;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+
+.topnav{
+background:#0b166e;
+display:flex;
+justify-content:center;
+gap:10px;
+padding:12px 20px;
+flex-wrap:wrap;
+}
+.topnav a{
+color:#fff;
+text-decoration:none;
+padding:10px 16px;
+border-radius:6px;
+font-weight:500;
+}
+.topnav a:hover{background:#DC143C;}
+@media(max-width:768px){
+.topnav{justify-content:flex-start;}
+}
+
+// weather css]
+.weather-card{
+    background:#eef7ff;
+    border-radius:12px;
+    padding:15px;
+    margin-top:15px;
+}
+
+.forecast-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:15px;
+}
+
+.forecast-item{
+    background:#f5f9fc;
+    border-radius:10px;
+    padding:12px;
+    text-align:center;
+}
+
+.alert-panel{
+    margin-top:20px;
+    padding:15px;
+    border-left:6px solid #d32f2f;
+    background:#fff4f4;
+    color:#b71c1c;
+    border-radius:10px;
+    font-weight:bold;
+}
+#clock{text-align:right}
+</style>
+
+
+<style id="chatgpt-responsive-patch">
+html{font-size:16px}
+img{max-width:100%;height:auto}
+table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media (max-width:768px){
+body{display:block!important}
+.sidebar{position:relative!important;left:0!important;width:100%!important;min-height:auto!important;height:auto!important}
+.main,.main-content{margin-left:0!important;width:100%!important}
+.header{padding:14px!important;font-size:20px!important}
+.container{width:100%!important;max-width:100%!important;padding:12px!important}
+.card{padding:16px!important}
+.form-grid,.vitals,.cards,.content,.actions,.level{
+display:grid!important;
+grid-template-columns:1fr!important;
+gap:12px!important}
+input,select,textarea,button{width:100%!important;font-size:16px}
+}
+</style>
+
+
+<style>
+body{display:block!important}
+.sidebar{display:none!important}
+.main,.main-content{margin-left:0!important;width:100%!important}
+</style>
+
+
+</head>
+
+<body>
+
+<div class="topnav">
+<a href="index.html">📊 Dashboard</a>
+<a href="referral.html">📄 Patient Referral</a>
+<a href="ambulance.html">🚑 Emergency Medical Transport Services</a>
+<a href="homevisit.html">👨‍⚕️Home Visit Check-up Services</a>
+</div>
+
+<div class="main">
+
+<div class="header">
+<h2>Antipolo City Health Office<br><small><h3>Patient Navigation and Referral Unit</h3></small></h2>
+
+
+
+
+</div>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>Total Referrals</h3>
+<h1 id="patientAssistanceTotal" class="big">0</h1>
+
+</div>
+
+<div class="card">
+
+<h3>Emergency Transport Assistance</h3>
+<h1>156</h1>
+
+</div>
+
+<div class="card">
+<h3>Coordination Process</h3>
+<h4>Accepted</h4>
+<h1 id="coordinated">0</h1>
+<h4>Refused</h4>
+<h1 id="refused">0</h1>
+</div>
+<div class="card">
+<h3>Status</h3>
+<h4>On-Going</h4>
+<h1 id="ongoing">0</h1>
+<h4>Cannot Be Contacted</h4>
+<h1 id="cannotBeContacted">0</h1>
+</div>
+
+
+
+</div>
+<script>
+const url = "https://script.google.com/macros/s/AKfycbzycxy_TPH1v9yvtDv0u0a_03szZmQCRWt-moTgMuH370HSAC4ffcQbUIsYFHLfiJA/exec";
+
+fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    console.log("Received:", data);
+
+    document.getElementById("coordinated").textContent = data.coordinated;
+    document.getElementById("refused").textContent = data.refused;
+    document.getElementById("ongoing").textContent = data.ongoing;
+    document.getElementById("cannotBeContacted").textContent = data.cannotBeContacted;
+  })
+  .catch(error => {
+    console.error("Fetch error:", error);
+  });
+  
+ </script>
+
+</div>
+
+
+<h2>Dispatching Unit / Rescue</h2>
+<div class="cards">
+<div class="card">
+<h3>City Health Office</h3>
+<h1 id="cityHealthOffice">0</h1>
+</div>
+
+<div class="card">
+<h3>San Roque</h3>
+<h1 id="sanRoque">0</h1>
+</div>
+
+<div class="card">
+<h3>San Isidro</h3>
+<h1 id="sanIsidro">0</h1>
+</div>
+
+<div class="card">
+<h3>CDRRMO</h3>
+<h1 id="cdrrmo">0</h1>
+</div>
+
+
+<div class="card">
+<h3>Dela Paz</h3>
+<h1 id="delaPaz">0</h1>
+</div>
+
+
+<div class="card">
+<h3>Inarawan</h3>
+<h1 id="inarawan">0</h1>
+</div>
+
+<div class="card">
+<h3>Dalig</h3>
+<h1 id="dalig">0</h1>
+</div>
+
+<div class="card">
+<h3>San Jose</h3>
+<h1 id="sanJose">0</h1>
+</div>
+
+<div class="card">
+<h3>San Luis</h3>
+<h1 id="sanLuis">0</h1>
+</div>
+
+<div class="card">
+<h3>Bagong Nayon</h3>
+<h1 id="bagongnayon">0</h1>
+</div>
+
+<div class="card">
+<h3>Beverly Hills</h3>
+<h1 id="beverlyHills">0</h1>
+</div>
+
+<div class="card">
+<h3>Calawis</h3>
+<h1 id="calawis">0</h1>
+</div>
+
+<div class="card">
+<h3>Cupang</h3>
+<h1 id="cupang">0</h1>
+</div>
+
+<div class="card">
+<h3>Mambugan</h3>
+<h1 id="mambugan">0</h1>
+</div>
+
+<div class="card">
+<h3>Mayamot</h3>
+<h1 id="mayamot">0</h1>
+</div>
+
+<div class="card">
+<h3>Muntindilaw</h3>
+<h1 id="muntindilaw">0</h1>
+</div>
+
+
+<div class="card">
+<h3>Santa Cruz</h3>
+<h1 id="santaCruz">0</h1>
+</div>
+
+<div class="card">
+<h3>Self-Conduct</h3>
+<h1 id="selfConduct">0</h1>
+</div>
+
+
+<script>
+
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwNB-pBdYlYLaDxkWd22i4DA8y1RrA7hxnnnQnB8pJZdCb4xBBhPfVHYSF1dCtBz5E/exec";
+
+function loadData(){
+
+fetch(WEB_APP_URL)
+.then(res => res.json())
+.then(data => {
+
+    Object.keys(data).forEach(key => {
+
+        const el = document.getElementById(key);
+
+        if(el){
+            el.textContent = data[key];
+        }
+
+    });
+
+});
+
+}
+
+loadData();
+
+// Refresh every 30 seconds
+setInterval(loadData,30000);
+
+</script>
+
+<div class="card">
+    <h3><i class="fa-solid fa-cloud-sun"></i> Weather & Emergency Alerts</h3>
+    <div id="currentWeather" class="weather-card">
+        Loading current weather...
+    </div>
+    <h4 style="margin-top:20px;">🌧 3-Day Forecast</h4>
+    <div id="forecastCards" class="forecast-grid"></div>
+
+</div>
+</div>
+
+<div class="footer">
+Antipolo Patient Navigation & Referral System <br> Coded by: Erwin R. Alincastre. All Rights Reserved.
+</div>
+</body>
+
+<script>
+const url="https://script.google.com/macros/s/AKfycbyh7Eh9ih44_n7pd2vDHiNEW08rV4X6hByHvp2vJQx6N496uTMhmt77f9KPCga55BDVaw/exec";
+
+fetch(url)
+.then(r=>r.json())
+.then(data=>{
+
+document.getElementById("totalPatients").innerHTML=
+data.totalPatients;
+
+});
+</script>
+
+<script>
+const WEATHER_API_KEY = "837d7b09ac95459a98d03308260107";
+
+fetch(`https://api.weatherapi.com/v1/forecast.json?key=${WEATHER_API_KEY}&q=Antipolo&days=3&aqi=no&alerts=yes`)
+.then(response => response.json())
+.then(data => {
+
+    const current = data.current;
+    const forecast = data.forecast.forecastday;
+
+    let html = `
+        <h2>${current.temp_c}°C</h2>
+        <p>${current.condition.text}</p>
+        <p><strong>Humidity:</strong> ${current.humidity}%</p>
+        <p><strong>Wind:</strong> ${current.wind_kph} km/h</p>
+        <hr>
+        <h4>3-Day Forecast</h4>
+    `;
+
+    forecast.forEach(day => {
+        html += `
+            <div style="margin-bottom:10px">
+                <strong>${day.date}</strong><br>
+                ${day.day.condition.text}<br>
+                🌡 ${day.day.maxtemp_c}°C / ${day.day.mintemp_c}°C
+            </div>
+        `;
+    });
+
+    document.getElementById("weatherBox").innerHTML = html;
+
+})
+.catch(error => {
+    document.getElementById("weatherBox").innerHTML =
+        "Unable to load weather data.";
+    console.error(error);
+});
+</script>
+
+<script>
+const apiKey = "837d7b09ac95459a98d03308260107";
+const city = "Antipolo";
+
+fetch(`https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=3&aqi=no&alerts=yes`)
+.then(res=>res.json())
+.then(data=>{
+
+const c=data.current;
+
+document.getElementById("currentWeather").innerHTML=`
+<h2>${c.temp_c}°C ${c.condition.text}</h2>
+
+<img src="https:${c.condition.icon}">
+
+<p>💧 Humidity: ${c.humidity}%</p>
+
+<p>🌬 Wind: ${c.wind_kph} km/h</p>
+
+<p>🌡 Feels Like: ${c.feelslike_c}°C</p>
+
+<p>☔ Rain Chance: ${data.forecast.forecastday[0].day.daily_chance_of_rain}%</p>
+`;
+
+let forecast="";
+
+data.forecast.forecastday.forEach(day=>{
+
+forecast+=`
+<div class="forecast-item">
+
+<b>${day.date}</b>
+
+<br><img src="https:${day.day.condition.icon}">
+
+<p>${day.day.condition.text}</p>
+
+<p>${day.day.maxtemp_c}° / ${day.day.mintemp_c}°</p>
+
+</div>
+`;
+
+});
+
+document.getElementById("forecastCards").innerHTML=forecast;
+
+if(data.alerts.alert.length>0){
+
+const a=data.alerts.alert[0];
+
+document.getElementById("alertPanel").innerHTML=`
+⚠ ${a.headline}<br><br>
+
+${a.desc}
+`;
+
+}else{
+
+document.getElementById("alertPanel").innerHTML=`
+🟢 No active WeatherAPI weather alerts.
+`;
+
+}
+
+});
+
+
+</script>
+
+
+<script>
+const url = "https://script.google.com/macros/s/AKfycbyLIEQRChCqZ_ECwQZm8ha1RvZe7aavx_tiHo1DCoz2S9TtR3fhn2zpDhaiUhHQXyQ/exec";
+
+fetch(url)
+  .then(response => response.json())
+  .then(data => {
+      console.log(data);
+      alert(JSON.stringify(data));
+  })
+  .catch(error => {
+      console.error(error);
+      alert(error);
+  });
+  
+  
+</script>
+
+</html>

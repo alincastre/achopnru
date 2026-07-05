@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Antipolo Patient Navigation & Referral System</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+body{background:#eef3f9;color:#111;overflow-x:hidden}
+.sidebar{position:fixed;left:0;top:0;width:240px;height:100vh;background:#0b166e;overflow:auto}
+.sidebar a{display:block;padding:15px 20px;color:#fff;text-decoration:none}
+.sidebar a:hover{background:#DC143C}
+.main-content{margin-left:240px;min-height:100vh}
+.header{background:#fff;padding:18px;text-align:center;font-size:1.6rem;font-weight:600}
+.container{max-width:1100px;margin:30px auto;padding:0 20px}
+.card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 5px 15px rgba(0,0,0,.12)}
+.section-title{font-size:1.1rem;color:#DC143C;font-weight:600;margin:20px 0 12px}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.vitals{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px}
+.form-group{display:flex;flex-direction:column}
+label{margin-bottom:6px;font-weight:500}
+input,select,textarea{width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;font-size:15px}
+textarea{resize:vertical;min-height:90px}
+button{margin-top:20px;width:100%;padding:15px;border:none;border-radius:8px;background:#0b166e;color:#fff;font-size:1rem;cursor:pointer;min-height:48px}
+button:hover{background:#DC143C}
+.footer{text-align:center;padding:16px;color:#666}
+@media (max-width:768px){
+body{display:block}
+.sidebar{position:relative;width:100%;height:auto}
+.main-content{margin-left:0}
+.header{font-size:1.25rem}
+.container{padding:15px}
+.card{padding:18px}
+.form-grid,.vitals{grid-template-columns:1fr}
+}
+
+.topnav{
+background:#0b166e;
+display:flex;
+justify-content:center;
+gap:10px;
+padding:12px 20px;
+flex-wrap:wrap;
+}
+.topnav a{
+color:#fff;
+text-decoration:none;
+padding:10px 16px;
+border-radius:6px;
+font-weight:500;
+}
+.topnav a:hover{background:#DC143C;}
+@media(max-width:768px){
+.topnav{justify-content:flex-start;}
+}
+
+</style>
+
+
+
+
+<body>
+<div class="topnav">
+<a href="index.html">📊 Dashboard</a>
+<a href="referral.html">📄 Patient Referral</a>
+<a href="ambulance.html">🚑 Emergency Medical Transport Services</a>
+<a href="homevisit.html">👨‍⚕️Home Visit Check-up Services</a>
+</div>
+
+<div class="main-content">
+
+
+
+<div class="header">
+🏥 Antipolo Patient Navigation and Referral System
+</div>
+
+
+
+
+
+
+<div class="container">
+
+<div class="card">
+
+<form id="patientForm">
+
+<div class="section-title">
+Patient Information
+</div>
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>Date & Time</label>
+<input type="datetime-local" name="datetime" required>
+</div>
+
+<div class="form-group">
+<label>Full Name</label>
+<input type="text" name="fullname" required>
+</div>
+
+<div class="form-group">
+<label>Age</label>
+<input type="number" name="age" required>
+</div>
+
+<div class="form-group">
+<label>Gender</label>
+<select name="gender">
+<option>Male</option>
+<option>Female</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Address</label>
+<input type="text" name="address">
+</div>
+
+<div class="form-group">
+<label>Baranggay</label>
+<select name="barangay">
+<option>Bagong Nayon</option>
+<option>Beverly Hills</option>
+<option>Calawis</option>
+<option>Cupang</option>
+<option>Dalig</option>
+<option>Dela Paz</option>
+<option>Inarawan</option>
+<option>Mambugan</option>
+<option>Mayamot</option>
+<option>Muntindilaw</option>
+<option>San Isidro</option>
+<option>San Jose</option>
+<option>San Juan</option>
+<option>San Luis</option>
+<option>San Roque</option>
+<option>Santa Cruz</option>
+<option>Other</option>
+</select>
+</div>
+
+
+<div class="form-group">
+<label>Contact Number</label>
+<input type="text" name="contact">
+</div>
+
+<div class="form-group">
+<label>Contact Person</label>
+<input type="text" name="contactperson">
+</div>
+
+</div>
+
+<br>
+
+<div class="section-title">
+Medical Information
+</div>
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>Informant</label>
+<textarea name="informant"></textarea>
+</div>
+
+<div class="form-group">
+<label>Medical Diagnosis</label>
+<textarea name="diagnosis"></textarea>
+</div>
+
+<div class="form-group">
+<label>Chief Complaint</label>
+<textarea name="complaint"></textarea>
+</div>
+
+</div>
+
+<br>
+
+<div class="section-title">
+Referral Information
+</div>
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>Hospital Referred</label>
+<select name="hospital">
+<option>Rizal Provincial Hospital System Annex I (Padilla)</option>
+<option>Rizal Provincial Hospital System AnnexII (Dalig)</option>
+<option>Antipolo City Hospital Annex III ( Cabading)</option>
+<option>Antipolo City Hospital Annex IV (Mambugan)</option>
+<option>Quirino Memorial Medical Center </option>
+<option>Amang Rodriguez Memorial Medical Center</option>
+<option>East Avenue Medical Center</option>
+<option>National Kidney and Transplant Institute</option>
+<option>Lung Center of the Philippines</option>
+<option>Philippine Heart Center</option>
+<option>National Center for Mental Health</option>
+<option>Philippine General Hospital</option>
+<option>San Lazaro Hospital</option>
+<option>United Antipolo Specialists Hospital and Medical Center</option>
+<option>Soriano-Leyble Medical and Maternity Hospital</option>
+<option>Clinica Antipolo Hospital & Wellness Center, Inc.</option>
+<option>Antipolo Doctors Hospital</option>
+<option>Assumption Specialty Hospital and Medical Center</option>
+<option>Santana Maternity and Childrens Hospital</option>
+<option>Metro Antipolo Hospital and Medical Center</option>
+<option>Cornel Medical Center</option>
+<option>Blessed Trinity Hospital</option>
+<option>National Poison Management and Control Center</option>
+<option>Manila East Medical Center</option>
+<option>Fatima University Medical Center - Antipolo</option>
+<option>Marikina Valley Medical Center</option>
+<option>Marikina Doctors Hospital and Medical Center, Inc.</option>
+<option>Pasig City General Hospital</option>
+<option>Quezon City General Hospital</option>
+<option>Veterans Memorial Medical Center</option>
+<option>Victoriano Luna Medical Center</option>
+<option>Philippine Orthopedic Center</option>
+<option>National Children's Hospital</option>
+<option>Rizal Medical Center</option>
+<option>Rizal Provincial Hospital System (RPHS) Morong</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Receiving Doctor / Nurse</label>
+<input type="text" name="receiver">
+</div>
+
+</div>
+
+<br>
+
+<div class="section-title">
+Vital Signs
+</div>
+
+<div class="vitals">
+
+<div class="form-group">
+<label>BP</label>
+<input type="text" name="bp">
+</div>
+
+<div class="form-group">
+<label>Temperature</label>
+<input type="text" name="temp">
+</div>
+
+<div class="form-group">
+<label>Heart Rate</label>
+<input type="text" name="hr">
+</div>
+
+<div class="form-group">
+<label>Respiratory Rate</label>
+<input type="text" name="rr">
+</div>
+
+<div class="form-group">
+<label>O₂ Saturation</label>
+<input type="text" name="o2">
+</div>
+
+<div class="form-group">
+<label>GCS</label>
+<input type="text" name="gcs">
+</div>
+
+</div>
+
+<br>
+
+<div class="section-title">
+Transport Team
+</div>
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>Ambulance / Rescue</label>
+<select name="driver">
+<option>City Health Office</option>
+<option>CDRRMO</option>
+<option>Bagong Nayon</option>
+<option>Beverly Hills</option>
+<option>Calawis</option>
+<option>Cupang</option>
+<option>Dalig</option>
+<option>Dela Paz</option>
+<option>Inarawan</option>
+<option>Mambugan</option>
+<option>Mayamot</option>
+<option>Muntindilaw</option>
+<option>San Isidro</option>
+<option>San Jose</option>
+<option>San Juan</option>
+<option>San Luis</option>
+<option>San Roque</option>
+<option>Santa Cruz</option>
+<option>Self Conduct</option>
+</select>
+</div>
+
+
+
+<div class="form-group">
+<label>Ambulance Nurse / Medic</label>
+<input type="text" name="medic">
+</div>
+
+</div>
+
+<button type="submit">
+Save Patient Record
+</button>
+
+</form>
+
+</div>
+
+
+</div>
+
+<div class="footer">
+Antipolo Patient Navigation & Referral System <br>Coded by: Erwin R. Alincastre. All Rights Reserved.
+</div>
+
+
+
+</div>
+
+
+
+<script>
+
+const scriptURL="https://script.google.com/macros/s/AKfycbxVuEOmMnSa4eAt3lacgkhcnuWrx15c6EfHtqRLHJ1q98yaDY8Yb8HxoUFUsPhU95Iczg/exec";
+
+document.getElementById("patientForm").addEventListener("submit",e=>{
+
+e.preventDefault();
+
+fetch(scriptURL,{
+method:"POST",
+body:new FormData(document.getElementById("patientForm"))
+})
+.then(response=>{
+alert("Patient record saved successfully.");
+document.getElementById("patientForm").reset();
+})
+.catch(error=>{
+alert("Error saving data.");
+});
+
+});
+
+</script>
+
+
+
+
+
+
+
+</body>
+</html>
