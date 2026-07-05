@@ -513,9 +513,33 @@ body{display:block!important}
 
 
 
+ <div class="card">
+ <h3>Gender</h3>
+ <h4>Male</h4>
+        <h1><div id="male" class="number">0</div></h1>
+<h4>Female</h4>	
+		 <h1><div id="female" class="number">0</div></h1>
+    </div>
+
+    <div class="card">
+	 <h3>Classification</h3>
+<h4>Pedia</h4> 
+        <h1><div id="pedia" class="number">0</div></h1>
+
+ <h4>Adult</h4>
+		        <h1><div id="adult" class="number">0</div></h1>
+    </div>
+
+
+</div>
+
+
+
+
+
 </div>
 <script>
-const url = "https://script.google.com/macros/s/AKfycbzycxy_TPH1v9yvtDv0u0a_03szZmQCRWt-moTgMuH370HSAC4ffcQbUIsYFHLfiJA/exec";
+const url = "https://script.google.com/macros/s/AKfycbzrv0inC0T74I4Za-e72UsTIbkoyRB3rfEgu27pzABYYW652kQ4B51uWiC0quqWksc/exec";
 
 fetch(url)
   .then(response => response.json())
@@ -526,6 +550,10 @@ fetch(url)
     document.getElementById("refused").textContent = data.refused;
     document.getElementById("ongoing").textContent = data.ongoing;
     document.getElementById("cannotBeContacted").textContent = data.cannotBeContacted;
+	document.getElementById("male").textContent = data.male ?? 0;
+    document.getElementById("female").textContent = data.female ?? 0;
+    document.getElementById("pedia").textContent = data.pedia ?? 0;
+    document.getElementById("adult").textContent = data.adult ?? 0;
   })
   .catch(error => {
     console.error("Fetch error:", error);
@@ -817,5 +845,4 @@ fetch(url)
   
   
 </script>
-
 </html>
