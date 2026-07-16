@@ -134,6 +134,7 @@ box-shadow:0 5px 15px rgba(0,0,0,.08);
 
 }
 
+
 .card h3{
 
 color:#0b166e;
@@ -443,6 +444,75 @@ font-weight:500;
     border: 0;
 }
 
+/* Table Container */
+.table-responsive{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    margin:20px auto;
+}
+
+/* District Table */
+.district-table{
+    width:24%;
+    max-width:1000px;
+    border-collapse:collapse;
+    table-layout:fixed;
+    background:#fff;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.district-table th,
+.district-table td{
+    padding:12px;
+    border:1px solid #ddd;
+    text-align:center;
+    vertical-align:middle;
+}
+
+.district-table th{
+    background:#0b166e;
+    color:#fff;
+}
+
+.district-table td:first-child,
+.district-table td:nth-child(3){
+    text-align:left;
+    font-weight:500;
+}
+
+.district-table h3{
+    margin:0;
+    font-size:22px;
+    color:#DC143C;
+}
+
+/* Mobile */
+@media (max-width:768px){
+    .table-responsive{
+        justify-content:flex-start;
+    }
+
+    .district-table{
+        min-width:650px;
+        width:100%;
+    }
+
+    .district-table th,
+    .district-table td{
+        padding:10px;
+        font-size:14px;
+    }
+
+    .district-table h3{
+        font-size:18px;
+    }
+}
+
 </style>
 
 
@@ -578,101 +648,111 @@ fetch(url)
 
 </div>
 
-
-<h2>Dispatching Unit / Rescue</h2>
 <div class="cards">
 <div class="card">
-<h3>City Health Office</h3>
+<h3>City Health Office Ambulance</h3>
 <h1 id="cityHealthOffice">0</h1>
 </div>
 
-<div class="card">
-<h3>San Roque</h3>
-<h1 id="sanRoque">0</h1>
-</div>
 
 <div class="card">
-<h3>San Isidro</h3>
-<h1 id="sanIsidro">0</h1>
-</div>
-
-<div class="card">
-<h3>CDRRMO</h3>
+<h3>CDRRMO Ambulance</h3>
 <h1 id="cdrrmo">0</h1>
 </div>
 
 
-<div class="card">
-<h3>Dela Paz</h3>
-<h1 id="delaPaz">0</h1>
-</div>
-
-
-<div class="card">
-<h3>Inarawan</h3>
-<h1 id="inarawan">0</h1>
-</div>
-
-<div class="card">
-<h3>Dalig</h3>
-<h1 id="dalig">0</h1>
-</div>
-
-<div class="card">
-<h3>San Jose</h3>
-<h1 id="sanJose">0</h1>
-</div>
-
-<div class="card">
-<h3>San Luis</h3>
-<h1 id="sanLuis">0</h1>
-</div>
-
-<div class="card">
-<h3>Bagong Nayon</h3>
-<h1 id="bagongnayon">0</h1>
-</div>
-
-<div class="card">
-<h3>Beverly Hills</h3>
-<h1 id="beverlyHills">0</h1>
-</div>
-
-<div class="card">
-<h3>Calawis</h3>
-<h1 id="calawis">0</h1>
-</div>
-
-<div class="card">
-<h3>Cupang</h3>
-<h1 id="cupang">0</h1>
-</div>
-
-<div class="card">
-<h3>Mambugan</h3>
-<h1 id="mambugan">0</h1>
-</div>
-
-<div class="card">
-<h3>Mayamot</h3>
-<h1 id="mayamot">0</h1>
-</div>
-
-<div class="card">
-<h3>Muntindilaw</h3>
-<h1 id="muntindilaw">0</h1>
-</div>
-
-
-<div class="card">
-<h3>Santa Cruz</h3>
-<h1 id="santaCruz">0</h1>
-</div>
 
 <div class="card">
 <h3>Self-Conduct</h3>
 <h1 id="selfConduct">0</h1>
 </div>
+</div>
+
+<div class="table-responsive">
+<table class="district-table">
+    <thead>
+        <tr>
+            <th>Barangay Rescue <br>District 1</th>
+            <th>Total</th>
+            <th>Barangay Rescue <br>District 2</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Bagong Nayon</td>
+            <td><h3 id="bagongnayon">0</h3></td>
+
+            <td>Calawis</td>
+            <td><h3 id="calawis">0</h3></td>
+        </tr>
+
+        <tr>
+            <td>Beverly Hills</td>
+            <td><h3 id="beverlyHills">0</h3></td>
+
+            <td>Cupang</td>
+            <td><h3 id="cupang">0</h3></td>
+        </tr>
+
+        <tr>
+            <td>Dela Paz</td>
+            <td><h3 id="delaPaz">0</h3></td>
+
+            <td>Dalig</td>
+            <td><h3 id="dalig">0</h3></td>
+        </tr>
+
+        <tr>
+            <td>Mambugan</td>
+            <td><h3 id="mambugan">0</h3></td>
+
+            <td>Inarawan</td>
+            <td><h3 id="inarawan">0</h3></td>
+        </tr>
+
+        <tr>
+            <td>Mayamot</td>
+            <td><h3 id="mayamot">0</h3></td>
+
+            <td>San Jose</td>
+            <td><h3 id="sanJose">0</h3></td>
+        </tr>
+
+        <tr>
+            <td>Muntindilaw</td>
+            <td><h3 id="muntindilaw">0</h3></td>
+
+            <td>San Juan</td>
+            <td><h3 id="sanJuan">0</h3></td>
+        </tr>
+
+        <tr>
+            <td>San Isidro</td>
+            <td><h3 id="sanIsidro">0</h3></td>
+
+            <td>San Luis</td>
+            <td><h3 id="sanLuis">0</h3></td>
+        </tr>
+
+        <tr>
+            <td>Sta. Cruz</td>
+            <td><h3 id="santaCruz">0</h3></td>
+
+            <td>San Roque</td>
+            <td><h3 id="sanRoque">0</h3></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div></div>
+
+<table>
+
+
+
+</table>
+</div></div>
 
 
 <script>
