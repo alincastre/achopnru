@@ -122,18 +122,66 @@ padding:25px;
 
 }
 
+
 .card{
-
-background:white;
-
-border-radius:10px;
-
-padding:20px;
-
-box-shadow:0 5px 15px rgba(0,0,0,.08);
-
+    background:rgba(255,255,255,.7);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,.4);
 }
 
+.card{
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #ffffff, #f5f8ff);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
+    transition: all .35s ease;
+    cursor: pointer;
+}
+
+/* Animated gradient background */
+.card::before{
+    content:"";
+    position:absolute;
+    top:-50%;
+    left:-50%;
+    width:200%;
+    height:200%;
+    background:linear-gradient(
+        45deg,
+        transparent,
+        rgba(220,20,60,.12),
+        rgba(11,22,110,.15),
+        transparent
+    );
+    transform:rotate(25deg);
+    transition:.6s;
+    opacity:0;
+}
+
+.card:hover::before{
+    opacity:1;
+    transform:rotate(25deg) translateX(25%);
+}
+
+/* Hover effect */
+.card:hover{
+    transform:translateY(-8px) scale(1.03);
+    background:linear-gradient(135deg,#0b166e,#DC143C);
+    color:#fff;
+    box-shadow:0 20px 40px rgba(0,0,0,.25);
+}
+
+/* Change text color */
+.card:hover h1,
+.card:hover h2,
+.card:hover h3,
+.card:hover h4,
+.card:hover p,
+.card:hover div{
+    color:white;
+}
 
 .card h3{
 
