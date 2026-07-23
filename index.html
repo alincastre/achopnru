@@ -11,6 +11,7 @@
 
 <!-- Chart.js Library -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <!-- PWA Meta Tags & Manifest Link -->
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0b166e">
@@ -29,6 +30,7 @@
     });
   }
 </script>
+
 <style>
 /* --- BASE STYLES --- */
 *{
@@ -178,7 +180,7 @@ body{
 
 .district-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Updated from 380px for smaller screen adaptability */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
     width: 100%;
 }
@@ -188,7 +190,7 @@ body{
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     border: 1px solid #e2e8f0;
-    overflow-x: auto; /* Added horizontal scroll fallback for narrow viewports */
+    overflow-x: auto;
     transition: all 0.3s ease;
 }
 
@@ -203,6 +205,8 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .district-header h3 {
@@ -217,6 +221,69 @@ body{
 
 .district-header i {
     color: #38bdf8;
+}
+
+/* INTERACTIVE CONTROLS */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.search-input {
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    font-size: 13px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.search-input::placeholder {
+    color: #cbd5e1;
+}
+
+.search-input:focus {
+    background: #ffffff;
+    color: #0f172a;
+    border-color: #ffffff;
+}
+
+.view-toggle-group {
+    display: inline-flex;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 3px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.view-btn {
+    background: transparent;
+    border: none;
+    color: #cbd5e1;
+    padding: 5px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.view-btn:hover {
+    color: #ffffff;
+}
+
+.view-btn.active {
+    background: #ffffff;
+    color: #0b166e;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Barangay Modern Table */
@@ -253,14 +320,14 @@ body{
     text-align: right;
 }
 
-/* Modern Count Badge */
+/* Modern Dynamic Count Badge */
 .count-badge {
     display: inline-block;
     background: #fff1f2;
     color: #dc143c;
     border: 1px solid #fecdd3;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 14px;
     padding: 4px 14px;
     border-radius: 20px;
     min-width: 45px;
@@ -268,10 +335,23 @@ body{
     transition: all 0.2s ease;
 }
 
-.modern-barangay-table tr:hover .count-badge {
-    background: #dc143c;
-    color: #ffffff;
-    border-color: #dc143c;
+/* Dynamic Volume Color Classes */
+.badge-high {
+    background: #fee2e2 !important;
+    color: #dc2626 !important;
+    border-color: #fca5a5 !important;
+}
+
+.badge-mid {
+    background: #fef3c7 !important;
+    color: #d97706 !important;
+    border-color: #fde68a !important;
+}
+
+.badge-low {
+    background: #e0f2fe !important;
+    color: #0284c7 !important;
+    border-color: #bae6fd !important;
 }
 
 /* WEATHER & MAP */
@@ -296,7 +376,6 @@ body.dark-mode .weather-card, body.dark-mode .forecast-item { background: #33415
 body.dark-mode .sync-status { background: #334155; color: #cbd5e1; border-color: #475569; }
 body.dark-mode .pulse-badge { color: #4ade80; background: rgba(74, 222, 128, 0.1); border-color: rgba(74, 222, 128, 0.2); }
 
-/* Dark mode for modern district section */
 body.dark-mode .district-card {
     background: #1e293b !important;
     border-color: #334155 !important;
@@ -314,15 +393,9 @@ body.dark-mode .modern-barangay-table td.bgy-name {
     color: #f1f5f9 !important;
 }
 
-body.dark-mode .count-badge {
-    background: rgba(220, 20, 60, 0.15) !important;
-    color: #f87171 !important;
-    border-color: rgba(220, 20, 60, 0.3) !important;
-}
-
-body.dark-mode .modern-barangay-table tr:hover .count-badge {
-    background: #dc143c !important;
-    color: #ffffff !important;
+body.dark-mode .view-btn.active {
+    background: #334155 !important;
+    color: #38bdf8 !important;
 }
 
 /* RESPONSIVE */
@@ -424,7 +497,6 @@ body.dark-mode .modern-barangay-table tr:hover .count-badge {
     text-decoration: none;
 }
 
-/* Dark mode compatibility for modal */
 body.dark-mode .modal-card { background: #1e293b !important; color: #f1f5f9 !important; }
 body.dark-mode .modal-card h3 { color: #f8fafc !important; }
 body.dark-mode .hotline-item { background: #334155 !important; color: #fff !important; }
@@ -482,7 +554,7 @@ body.dark-mode .hotline-item { background: #334155 !important; color: #fff !impo
 
     <div class="card">
         <h3><i class="fa-solid fa-ambulance"></i> Emergency Transport Assistance</h3>
-        <h1>163</h1>
+        <h1 id="emergencyTransport">163</h1>
     </div>
 
     <div class="card">
@@ -643,6 +715,50 @@ body.dark-mode .hotline-item { background: #334155 !important; color: #fff !impo
             </table>
         </div>
 
+<!-- HOSPITAL REFERRAL TALLY BOARD CARD WITH INTERACTIVE SEARCH & TOGGLE -->
+<div class="district-section-container" style="margin-top: 25px;">
+    <div class="district-card">
+        <div class="district-header">
+            <h3><i class="fa-solid fa-hospital"></i> Hospital Referral Tally</h3>
+            <div class="header-actions">
+                <input type="text" id="hospitalSearch" class="search-input" placeholder="🔍 Search hospital..." onkeyup="filterHospitals()">
+                <div class="view-toggle-group">
+                    <button class="view-btn active" id="btnTableView" onclick="switchHospitalView('table')">
+                        <i class="fa-solid fa-table"></i> Table
+                    </button>
+                    <button class="view-btn" id="btnChartView" onclick="switchHospitalView('chart')">
+                        <i class="fa-solid fa-chart-bar"></i> Chart
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TABLE VIEW CONTAINER -->
+        <div id="hospitalTableView" style="max-height: 400px; overflow-y: auto;">
+            <table class="modern-barangay-table" id="hospitalTallyTable">
+                <thead>
+                    <tr style="background: #f8fafc; text-align: left; border-bottom: 2px solid #e2e8f0;">
+                        <th style="padding: 12px 20px; color: #475569;">Hospital Facility</th>
+                        <th style="padding: 12px 20px; text-align: right; color: #475569;">Total Referrals</th>
+                    </tr>
+                </thead>
+                <tbody id="hospitalTallyBody">
+                    <tr>
+                        <td colspan="2" style="text-align: center; padding: 20px; color: #64748b;">
+                            Loading hospital referral counts...
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- CHART VIEW CONTAINER -->
+        <div id="hospitalChartView" style="display: none; padding: 20px; position: relative; min-height: 320px;">
+            <canvas id="hospitalChart"></canvas>
+        </div>
+    </div>
+</div>
+
     </div>
 </div>
 
@@ -756,8 +872,29 @@ setInterval(() => {
     document.getElementById("refreshCountdown").textContent = countdownValue + "s";
 }, 1000);
 
-// --- 4. CHART.JS INITIALIZATION ---
-let genderChart, classChart;
+// --- 4. ANIMATED COUNTER HELPER ---
+function animateValue(id, target, duration = 800) {
+    const obj = document.getElementById(id);
+    if (!obj) return;
+    const start = parseInt(obj.textContent, 10) || 0;
+    if (start === target) return;
+    
+    let startTimestamp = null;
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj.textContent = Math.floor(progress * (target - start) + start);
+        if (progress < 1) {
+            window.requestAnimationFrame(step);
+        } else {
+            obj.textContent = target;
+        }
+    };
+    window.requestAnimationFrame(step);
+}
+
+// --- 5. CHART.JS INITIALIZATION WITH CLICK-TO-FILTER ---
+let genderChart, classChart, hospitalChart;
 
 function initCharts() {
     const ctxGender = document.getElementById('genderChart').getContext('2d');
@@ -792,30 +929,103 @@ function initCharts() {
             scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }
         }
     });
+
+    const ctxHospital = document.getElementById('hospitalChart').getContext('2d');
+    hospitalChart = new Chart(ctxHospital, {
+        type: 'bar',
+        data: {
+            labels: [],
+            datasets: [{
+                label: 'Total Referrals',
+                data: [],
+                backgroundColor: '#0b166e',
+                borderRadius: 6
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: { x: { beginAtZero: true, ticks: { precision: 0 } } },
+            onClick: (evt, activeElements) => {
+                if (activeElements.length > 0) {
+                    const index = activeElements[0].index;
+                    const hospitalName = hospitalChart.data.labels[index];
+                    
+                    switchHospitalView('table');
+                    const searchInput = document.getElementById('hospitalSearch');
+                    if (searchInput) {
+                        searchInput.value = hospitalName;
+                        filterHospitals();
+                    }
+                }
+            }
+        }
+    });
 }
 initCharts();
 
-// --- 5. DATA FETCHING LOGIC ---
+// --- SWITCH BETWEEN TABLE AND CHART VIEW ---
+function switchHospitalView(view) {
+    const tableView = document.getElementById('hospitalTableView');
+    const chartView = document.getElementById('hospitalChartView');
+    const btnTable = document.getElementById('btnTableView');
+    const btnChart = document.getElementById('btnChartView');
+
+    if (view === 'table') {
+        tableView.style.display = 'block';
+        chartView.style.display = 'none';
+        btnTable.classList.add('active');
+        btnChart.classList.remove('active');
+    } else {
+        tableView.style.display = 'none';
+        chartView.style.display = 'block';
+        btnChart.classList.add('active');
+        btnTable.classList.remove('active');
+        if (hospitalChart) hospitalChart.resize();
+    }
+}
+
+// --- SEARCH / FILTER HOSPITALS ---
+function filterHospitals() {
+    const input = document.getElementById('hospitalSearch').value.toLowerCase();
+    const rows = document.querySelectorAll('#hospitalTallyBody tr');
+    
+    rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(input) ? '' : 'none';
+    });
+}
+
+// --- DYNAMIC BADGE COLOR CLASS ASSIGNMENT ---
+function getBadgeClass(count) {
+    if (count >= 30) return 'badge-high';
+    if (count >= 10) return 'badge-mid';
+    return 'badge-low';
+}
+
+// --- 6. DATA FETCHING LOGIC ---
 const primaryUrl = "https://script.google.com/macros/s/AKfycbzrv0inC0T74I4Za-e72UsTIbkoyRB3rfEgu27pzABYYW652kQ4B51uWiC0quqWksc/exec";
 
 function fetchPrimaryMetrics() {
     fetch(primaryUrl)
       .then(response => response.json())
       .then(data => {
-        document.getElementById("coordinated").textContent = data.coordinated ?? 0;
-        document.getElementById("refused").textContent = data.refused ?? 0;
-        document.getElementById("ongoing").textContent = data.ongoing ?? 0;
-        document.getElementById("cannotBeContacted").textContent = data.cannotBeContacted ?? 0;
+        animateValue("coordinated", data.coordinated ?? 0);
+        animateValue("refused", data.refused ?? 0);
+        animateValue("ongoing", data.ongoing ?? 0);
+        animateValue("cannotBeContacted", data.cannotBeContacted ?? 0);
         
         const male = data.male ?? 0;
         const female = data.female ?? 0;
         const pedia = data.pedia ?? 0;
         const adult = data.adult ?? 0;
 
-        document.getElementById("male").textContent = male;
-        document.getElementById("female").textContent = female;
-        document.getElementById("pedia").textContent = pedia;
-        document.getElementById("adult").textContent = adult;
+        animateValue("male", male);
+        animateValue("female", female);
+        animateValue("pedia", pedia);
+        animateValue("adult", adult);
 
         // Update Charts
         genderChart.data.datasets[0].data = [male, female];
@@ -836,7 +1046,7 @@ function fetchPrimaryMetrics() {
 
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwNB-pBdYlYLaDxkWd22i4DA8y1RrA7hxnnnQnB8pJZdCb4xBBhPfVHYSF1dCtBz5E/exec";
 
-// --- SORTING FUNCTION FOR BARANGAY TABLES ---
+// --- SORTING & BADGE COLORING FUNCTION FOR BARANGAY TABLES ---
 function sortBarangayTable(tableId) {
     const table = document.getElementById(tableId);
     if (!table) return;
@@ -851,11 +1061,17 @@ function sortBarangayTable(tableId) {
         const valA = badgeA ? parseInt(badgeA.textContent, 10) || 0 : 0;
         const valB = badgeB ? parseInt(badgeB.textContent, 10) || 0 : 0;
         
-        return valB - valA; // Sort Descending (Highest First)
+        return valB - valA;
     });
 
-    // Re-append sorted rows to tbody
-    rows.forEach(row => tbody.appendChild(row));
+    rows.forEach(row => {
+        const badge = row.querySelector('.count-badge');
+        if (badge) {
+            const count = parseInt(badge.textContent, 10) || 0;
+            badge.className = `count-badge ${getBadgeClass(count)}`;
+        }
+        tbody.appendChild(row);
+    });
 }
 
 function loadDistrictData(){
@@ -864,12 +1080,15 @@ function loadDistrictData(){
     .then(data => {
         Object.keys(data).forEach(key => {
             const el = document.getElementById(key);
-            if(el) el.textContent = data[key];
+            if(el) {
+                animateValue(key, data[key]);
+            }
         });
 
-        // Automatically sort both district tables highest first after updating counts
-        sortBarangayTable('district1Table');
-        sortBarangayTable('district2Table');
+        setTimeout(() => {
+            sortBarangayTable('district1Table');
+            sortBarangayTable('district2Table');
+        }, 850);
     });
 }
 
@@ -881,7 +1100,7 @@ setInterval(() => {
     loadDistrictData();
 }, 30000);
 
-// --- 6. WEATHER API FETCH ---
+// --- 7. WEATHER API FETCH ---
 const apiKey = "837d7b09ac95459a98d03308260107";
 const city = "Antipolo";
 
@@ -930,13 +1149,79 @@ function closeHotlineModal() {
     document.getElementById("hotlineModal").style.display = "none";
 }
 
-// Optional: Close modal if user clicks outside the modal card
 window.onclick = function(event) {
     const modal = document.getElementById("hotlineModal");
     if (event.target === modal) {
         modal.style.display = "none";
     }
 }
+
+// --- 8. HOSPITAL TALLY DATA FETCHING ---
+const HOSPITAL_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzrettTWHibdT9633Evt0xR9CuvxcTYqrj93NcKjoRP89qvfMbLo8H0JdzqKdrZrZY/exec";
+
+function fetchHospitalTally() {
+    fetch(HOSPITAL_WEB_APP_URL)
+        .then(response => response.json())
+        .then(data => {
+            const tbody = document.getElementById("hospitalTallyBody");
+            tbody.innerHTML = "";
+
+            if (!data || data.length === 0 || data.error) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="2" style="text-align:center; padding: 15px; color:#94a3b8;">
+                            ${data.error ? data.error : 'No hospital referral data recorded yet.'}
+                        </td>
+                    </tr>`;
+                
+                if (hospitalChart) {
+                    hospitalChart.data.labels = [];
+                    hospitalChart.data.datasets[0].data = [];
+                    hospitalChart.update();
+                }
+                return;
+            }
+
+            const hospitalLabels = [];
+            const hospitalCounts = [];
+
+            data.forEach(item => {
+                hospitalLabels.push(item.hospital);
+                hospitalCounts.push(item.count);
+
+                const tr = document.createElement("tr");
+                const badgeClass = getBadgeClass(item.count);
+                tr.innerHTML = `
+                    <td class="bgy-name">${item.hospital}</td>
+                    <td class="bgy-count">
+                        <span class="count-badge ${badgeClass}">${item.count}</span>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            if (hospitalChart) {
+                hospitalChart.data.labels = hospitalLabels;
+                hospitalChart.data.datasets[0].data = hospitalCounts;
+                hospitalChart.update();
+            }
+
+            filterHospitals();
+        })
+        .catch(error => {
+            console.error("Error fetching hospital tally:", error);
+            document.getElementById("hospitalTallyBody").innerHTML = `
+                <tr>
+                    <td colspan="2" style="text-align:center; padding: 15px; color:#ef4444;">
+                        Failed to load hospital data.
+                    </td>
+                </tr>`;
+        });
+}
+
+fetchHospitalTally();
+setInterval(fetchHospitalTally, 30000);
+
 </script>
 
 </body>
