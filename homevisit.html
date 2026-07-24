@@ -442,10 +442,12 @@ body{display:block!important}
 
 <body>
 <div class="topnav">
-<a href="index.html">📊 Dashboard</a>
-<a href="referral.html">📄 Patient Referral</a>
-<a href="ambulance.html">🚑 Emergency Medical Transport Services</a>
-<a href="homevisit.html">👨‍⚕️Home Visit Check-up Services</a>
+    <a href="index.html">📊 Dashboard</a>
+    <a href="about.html">ℹ️ About PNRU</a>
+    <a href="referral.html">📄 Patient Referral</a>
+    <a href="ambulance.html">🚑 Emergency Medical Transport Services</a>
+    <a href="homevisit.html">👨‍⚕️ Home Visit Check-up Services</a>
+	<a href="hotline.html">🚨 Contact & Hotlines</a>
 </div>
 
 <div class="main-content">
@@ -473,7 +475,7 @@ Patient Information
 
 <div class="form-group">
 <label>Full Name</label>
-<input type="text" name="fullname" required>
+<input type="text" name="fullname" placeholder="Juan Dela Cruz" required>
 </div>
 
 <div class="form-group">
@@ -491,7 +493,7 @@ Patient Information
 
 <div class="form-group">
 <label>Address</label>
-<input type="text" name="address">
+<input type="text" name="address" placeholder="123 Street, Antipolo City">
 </div>
 
 <div class="form-group">
@@ -520,7 +522,7 @@ Patient Information
 
 <div class="form-group">
 <label>Contact Number</label>
-<input type="text" name="contact">
+<input type="text" name="contact" placeholder="e.g., +1234567890">
 </div>
 
 <div class="form-group">
@@ -540,17 +542,17 @@ Medical Information
 
 <div class="form-group">
 <label>Medical Diagnosis</label>
-<textarea name="diagnosis"></textarea>
+<textarea name="diagnosis" ></textarea>
 </div>
 
 <div class="form-group">
 <label>Chief Complaint</label>
-<textarea name="complaint"></textarea>
+<textarea name="complaint" ></textarea>
 </div>
 
 <div class="form-group">
 <label>Last Checkup</label>
-<textarea name="lastcheckup"></textarea>
+<textarea name="lastcheckup" placeholder="Kelan huling nagpa konsulta sa doktor" ></textarea>
 </div>
 
 <div class="form-group">
@@ -560,7 +562,12 @@ Medical Information
 <option>Ambulatory / Nakakalakad</option>
 </select>
 </div>
+
+
+
 </div>
+
+
 <button type="submit">
 Save Patient Record
 </button>

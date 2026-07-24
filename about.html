@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>About PNRU - Patient Navigation and Referral Unit</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins,sans-serif;
+}
+
+body{
+    background:#eef3f9;
+}
+
+.topnav{
+    background:#0b166e;
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    padding:12px 20px;
+    flex-wrap:wrap;
+}
+.topnav a{
+    color:#fff;
+    text-decoration:none;
+    padding:10px 16px;
+    border-radius:6px;
+    font-weight:500;
+}
+.topnav a:hover{background:#DC143C;}
+
+.main-content{
+    width:100%;
+}
+
+.header{
+    background:#fff;
+    color:#0f0f0f;
+    text-align:center;
+    padding:20px;
+    font-size:24px;
+    font-weight:600;
+}
+
+.container{
+    width:95%;
+    max-width:1300px;
+    margin:auto;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.12);
+    margin-bottom:25px;
+}
+
+.section-title{
+    font-size:20px;
+    margin-bottom:15px;
+    font-weight:600;
+    color:#DC143C;
+    border-bottom:2px solid #eef3f9;
+    padding-bottom:8px;
+}
+
+/* About Grid Layout */
+.grid-2{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+    gap:20px;
+}
+
+.info-box{
+    background:#f8f9fa;
+    border-left:5px solid #0b166e;
+    padding:18px;
+    border-radius:8px;
+}
+
+.info-box h3{
+    color:#0b166e;
+    margin-bottom:8px;
+    font-size:18px;
+}
+
+.info-box p, .info-box ul{
+    font-size:14px;
+    color:#444;
+    line-height:1.6;
+}
+
+.info-box ul{
+    padding-left:18px;
+}
+
+/* Workflow Step Styling */
+.workflow-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.workflow-step {
+    position: relative;
+    padding-left: 32px;
+    margin-bottom: 15px;
+}
+
+.workflow-step:last-child {
+    margin-bottom: 0;
+}
+
+.workflow-step::before {
+    content: attr(data-step);
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 22px;
+    height: 22px;
+    background: #0b166e;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.workflow-step strong {
+    color: #0b166e;
+}
+
+.sub-list {
+    margin-top: 5px;
+    margin-left: 10px;
+    list-style-type: disc;
+}
+
+/* Organizational Structure Tree View Alignment */
+.org-chart{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:10px 0;
+    width: 100%;
+}
+
+.node{
+    background:#fff;
+    border:2px solid #0b166e;
+    border-radius:8px;
+    padding:15px 20px;
+    text-align:center;
+    box-shadow:0 4px 10px rgba(0,0,0,.08);
+    min-width:240px;
+}
+
+.node.head{
+    background:#0b166e;
+    color:#fff;
+    border-color:#0b166e;
+}
+
+.node.head h3, .node.head p{
+    color:#fff;
+}
+
+.node h3{
+    font-size:16px;
+    color:#0b166e;
+    margin-bottom:4px;
+}
+
+.node p{
+    font-size:13px;
+    color:#555;
+    margin-top: 2px;
+}
+
+.node .subtitle {
+    font-size: 12px;
+    font-weight: 500;
+    color: #DC143C;
+    margin-bottom: 6px;
+}
+
+.line-v{
+    width:2px;
+    height:25px;
+    background:#0b166e;
+}
+
+/* Tree Branch Connections */
+.tree-branch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.line-h-connector {
+    width: 66%;
+    height: 2px;
+    background: #0b166e;
+}
+
+.level-multi{
+    display:grid;
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+    gap:20px;
+    width:100%;
+    margin-top: -1px;
+}
+
+.level-multi .node-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer{
+    text-align:center;
+    padding:20px;
+    color:#777;
+    font-size:14px;
+}
+
+@media(max-width:900px){
+    .level-multi{
+        grid-template-columns: 1fr;
+    }
+    .line-h-connector {
+        display: none;
+    }
+}
+
+@media(max-width:768px){
+    .topnav{justify-content:flex-start;}
+    .header{font-size:20px; padding:15px;}
+    .card{padding:15px;}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="topnav">
+    <a href="index.html">📊 Dashboard</a>
+    <a href="about.html">ℹ️ About PNRU</a>
+    <a href="referral.html">📄 Patient Referral</a>
+    <a href="ambulance.html">🚑 Emergency Medical Transport Services</a>
+    <a href="homevisit.html">👨‍⚕️ Home Visit Check-up Services</a>
+    <a href="hotline.html">🚨 Contact & Hotlines</a>
+</div>
+
+<div class="main-content">
+
+    <div class="header">
+        ℹ️ About Patient Navigation & Referral Unit (PNRU)
+    </div>
+
+    <div class="container">
+
+        <!-- Core Mandate & Functions -->
+        <div class="card">
+            <div class="section-title">📌 Mandate & Core Functions</div>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h3>Our Mission</h3>
+                    <p>To provide seamless, timely, and efficient health navigation and referral assistance to patients, ensuring continuous access to primary, secondary, and tertiary healthcare facilities across the health network.</p>
+                </div>
+                <div class="info-box">
+                    <h3>Our Vision</h3>
+                    <p>Effective and efficient means of managing the client’s transitions through medical and social services. Clients are assigned to a Patient Navigator to assist them in entering medical care, clarifying medical concerns, and providing referrals.</p>
+                </div>
+                <div class="info-box">
+                    <h3>Scope of Services</h3>
+                    <ul>
+                        <li>24/7 Inter-facility referral coordination</li>
+                        <li>Emergency transport dispatch and guidance</li>
+                        <li>Outpatient navigation and diagnostic scheduling</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Purpose & Services -->
+        <div class="card">
+            <div class="section-title">📌 Purpose & Services</div>
+            <div class="grid-2">
+                <div class="info-box">
+                    <h3>Purpose</h3>
+                    <p>To implement an effective patient navigation and referral system. This system aims to enhance patient care coordination, streamline referral processes, and improve health outcomes for the residents of Antipolo City.</p>
+                </div>
+                <div class="info-box">
+                    <h3>Services</h3>
+                    <p><strong>Patient Transfer Assistance:</strong> Assist patients requiring transfer between hospitals or home-to-hospital transfers.</p>
+                    <p style="margin-top:8px;"><strong>DOH Calabarzon Coordination:</strong> Coordinating with DOH Calabarzon PNRS for specialized treatment, emergency care, or regional follow-up care.</p>
+                    <p style="margin-top:8px;"><strong>Ambulance Services:</strong> Offering emergency transport for patients requiring urgent medical attention.</p>
+                    <p style="margin-top:8px;"><strong>Inquiries & Helpdesk:</strong> Answering questions and queries regarding various services of the City Health Office.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Patient Navigation Workflow -->
+        <div class="card">
+            <div class="section-title">📌 Patient Navigation and Referral Unit Workflow</div>
+            <div class="info-box" style="border-left-width: 5px;">
+                <ol class="workflow-list">
+                    <li class="workflow-step" data-step="1">
+                        <strong>Entry Point:</strong> Patient arrives via Outpatient Department (OPD), Emergency Room (ER), or is referred from an external primary care clinic.
+                    </li>
+                    <li class="workflow-step" data-step="2">
+                        <strong>Screening & Intake:</strong> Navigator assesses clinical needs, insurance status, and social barriers (transportation, language, etc.).
+                    </li>
+                    <li class="workflow-step" data-step="3">
+                        <strong>Internal / External Triage:</strong>
+                        <ul class="sub-list">
+                            <li><strong>Internal:</strong> Directing the patient to a specialist within the same facility network.</li>
+                            <li><strong>External:</strong> Coordinating a transfer to a higher-level facility or a specialized diagnostic center.</li>
+                        </ul>
+                    </li>
+                    <li class="workflow-step" data-step="4">
+                        <strong>Coordination:</strong> PNRU staff handles administrative needs—booking appointments, transmitting medical records, arranging transportation, and securing prior authorizations.
+                    </li>
+                    <li class="workflow-step" data-step="5">
+                        <strong>Follow-Up:</strong> Ensures the patient completes referrals, receives results, and maintains ongoing care support.
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Organizational Structure Section -->
+        <div class="card">
+            <div class="section-title">🏛️ Organizational Structure</div>
+            
+            <div class="org-chart">
+                
+                <!-- Head Level -->
+                <div class="node head">
+                    <h3>City Health Officer / Unit Head</h3>
+                    <p>Concepcion Garcia Lat, MD, MHM</p>
+                </div>
+
+                <div class="line-v"></div>
+
+                <!-- Supervisor Level -->
+                <div class="node">
+                    <h3>PNRU Team Leader / Coordinator</h3>
+                    <p>Erwin R. Alincastre, RN</p>
+                </div>
+
+                <div class="line-v"></div>
+
+                <!-- Visual Tree Branch Connections -->
+                <div class="tree-branch">
+                    <div class="line-h-connector"></div>
+                </div>
+
+                <!-- Functional Units Level -->
+                <div class="level-multi">
+                    
+                    <div class="node-container">
+                        <div class="line-v"></div>
+                        <div class="node" style="width: 100%;">
+                            <h3>Navigators</h3>
+                            <p>Angelica D. Ortega</p>
+                            <p>Ronah Angela DLS Orlain</p>
+                            <p>Jerome Mislang</p>
+                        </div>
+                    </div>
+
+                    <div class="node-container">
+                        <div class="line-v"></div>
+                        <div class="node" style="width: 100%;">
+                            <h3>Data & IT Support Specialists</h3>
+                            <div class="subtitle">Referral Database, Dashboards & Records</div>
+                            <p>Erwin R. Alincastre, RN</p>
+                        </div>
+                    </div>
+
+                    <div class="node-container">
+                        <div class="line-v"></div>
+                        <div class="node" style="width: 100%;">
+                            <h3>Dispatch & Transport Team</h3>
+                            <div class="subtitle">Ambulance Logistics & Emergency Rescue</div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Antipolo Patient Navigation & Referral System <br>Coded by: Erwin R. Alincastre. All Rights Reserved.
+    </div>
+
+</div>
+
+</body>
+</html>

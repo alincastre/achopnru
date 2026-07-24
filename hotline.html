@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Emergency Medical Transport & Hotlines</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Poppins,sans-serif;
+}
+
+body{
+    background:#eef3f9;
+}
+
+.topnav{
+    background:#0b166e;
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    padding:12px 20px;
+    flex-wrap:wrap;
+}
+.topnav a{
+    color:#fff;
+    text-decoration:none;
+    padding:10px 16px;
+    border-radius:6px;
+    font-weight:500;
+}
+.topnav a:hover{background:#DC143C;}
+
+.main-content{
+    width:100%;
+}
+
+.header{
+    background:#fff;
+    color:#0f0f0f;
+    text-align:center;
+    padding:20px;
+    font-size:24px;
+    font-weight:600;
+}
+
+.container{
+    width:95%;
+    max-width:1300px;
+    margin:auto;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.12);
+    margin-bottom:25px;
+}
+
+.section-title{
+    font-size:20px;
+    margin-bottom:15px;
+    font-weight:600;
+    color:#DC143C;
+    border-bottom: 2px solid #eef3f9;
+    padding-bottom: 8px;
+}
+
+/* Contact Grid Layout */
+.contact-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+    gap:20px;
+}
+
+.contact-card{
+    background:#f8f9fa;
+    border-left:5px solid #0b166e;
+    padding:18px;
+    border-radius:8px;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+.contact-card.emergency{
+    border-left-color:#DC143C;
+    background:#fff5f5;
+}
+
+.contact-card h3{
+    font-size:18px;
+    color:#0b166e;
+    margin-bottom:8px;
+}
+
+.contact-card.emergency h3{
+    color:#DC143C;
+}
+
+.contact-card p{
+    font-size:14px;
+    color:#444;
+    margin-bottom:6px;
+}
+
+.phone-link{
+    display:inline-block;
+    margin-top:8px;
+    color:#fff;
+    background:#0b166e;
+    padding:8px 14px;
+    border-radius:6px;
+    text-decoration:none;
+    font-weight:600;
+    font-size:14px;
+}
+
+.phone-link.emergency-btn{
+    background:#DC143C;
+}
+
+.phone-link:hover{
+    opacity:0.9;
+}
+
+/* Table styling for directory */
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#0B6E4F;
+    color:#fff;
+    padding:12px 15px;
+    text-align:left;
+}
+
+td{
+    padding:12px 15px;
+    border-bottom:1px solid #ddd;
+    font-size:14px;
+}
+
+tr:nth-child(even){
+    background:#f8f8f8;
+}
+
+tr:hover{
+    background:#e7f5ef;
+}
+
+.footer{
+    text-align:center;
+    padding:20px;
+    color:#777;
+    font-size:14px;
+}
+
+@media(max-width:768px){
+    .topnav{justify-content:flex-start;}
+    .header{font-size:20px; padding:15px;}
+    .card{padding:15px;}
+    table{
+        display:block;
+        overflow-x:auto;
+        white-space:nowrap;
+    }
+}
+
+</style>
+
+<style id="chatgpt-responsive-patch">
+html{font-size:16px}
+img{max-width:100%;height:auto}
+table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media (max-width:768px){
+body{display:block!important}
+.main,.main-content{margin-left:0!important;width:100%!important}
+.header{padding:14px!important;font-size:20px!important}
+.container{width:100%!important;max-width:100%!important;padding:12px!important}
+.card{padding:16px!important}
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="topnav">
+    <a href="index.html">📊 Dashboard</a>
+	<a href="about.html">ℹ️ About PNRU</a>
+    <a href="referral.html">📄 Patient Referral</a>
+    <a href="ambulance.html">🚑 Emergency Medical Transport Services</a>
+    <a href="homevisit.html">👨‍⚕️ Home Visit Check-up Services</a>
+	<a href="hotline.html">🚨 Contact & Hotlines</a>
+</div>
+
+<div class="main-content">
+
+    <div class="header">
+        🚑 Emergency Contacts & Hotline Numbers
+    </div>
+
+    <div class="container">
+
+        <!-- 24/7 Emergency Hotlines -->
+        <div class="card">
+            <div class="section-title">🚨 24/7 Emergency Medical Hotlines</div>
+            <div class="contact-grid">
+                    <div class="contact-card emergency">
+                    <h3>DILG</h3>
+                    <p><strong>Primary Contact:</strong>Unified Emergency Hotline</p>
+                    <p><strong>Available:</strong> 24 Hours / 7 Days</p>
+                    <a href="tel:02911" class="phone-link emergency-btn">📞 Call (02) 911</a>
+                </div>
+                <div class="contact-card emergency">
+                    <h3>PNRU Emergency Operations</h3>
+                    <p><strong>Primary Contact:</strong> Direct Patient Transfer & Dispatch</p>
+                    <p><strong>Available:</strong> 24 Hours / 7 Days</p>
+                    <a href="tel:09165344707" class="phone-link emergency-btn">📞 Call 0916-534-4707</a>
+                </div>
+
+                <div class="contact-card emergency">
+                    <h3>CDRRMO Rescue & Transport</h3>
+                    <p><strong>Primary Contact:</strong> Emergency Disaster Response</p>
+                    <p><strong>Available:</strong> 24 Hours / 7 Days</p>
+                    <a href="tel:09178540842" class="phone-link emergency-btn">📞 Call 0917-8540-842</a>
+                </div>
+
+                <div class="contact-card emergency">
+                    <h3>Antipolo City Health Office</h3>
+                    <p><strong>Primary Contact:</strong> Health Incident Operations</p>
+                    <p><strong>Available:</strong> 24 Hours / 7 Days</p>
+                    <a href="tel:0286970362" class="phone-link emergency-btn">📞 Call (02) 8697-0362</a>
+                </div>
+				    <div class="contact-card emergency">
+                    <h3>Antipolo Police</h3>
+                    <p><strong>Primary Contact:</strong> Health Incident Operations</p>
+                    <p><strong>Available:</strong> 24 Hours / 7 Days</p>
+                    <a href="tel:0917-157-7627" class="phone-link emergency-btn">📞 Call  0917-157-7627</a>
+					<a href="tel:0998-598-5717" class="phone-link emergency-btn">📞 Call  0998-598-5717</a>
+                </div>
+				    <div class="contact-card emergency">
+                    <h3>Antipolo Fire Station</h3>
+                    <p><strong>Primary Contact:</strong> Health Incident Operations</p>
+                    <p><strong>Available:</strong> 24 Hours / 7 Days</p>
+                    <a href="tel:0945-155-6015" class="phone-link emergency-btn">📞 Call  0945-155-6015</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Local Hospital Directories -->
+        <div class="card">
+            <div class="section-title">🏥 Local & Government Hospital Contacts</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Hospital / Medical Center</th>
+                        <th>Classification</th>
+                        <th>Contact Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Rizal Provincial Hospital System Annex I (Padilla)</strong></td>
+                        <td>City Government</td>
+                        <td>(02) 8251-1559</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rizal Provincial Hospital System Annex II (Dalig)</strong></td>
+                        <td>City Government</td>
+                        <td>(02) 8941-8518</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Antipolo City Hospital Annex III (Cabading)</strong></td>
+                        <td>City Government</td>
+                        <td>(02) 8475 1876</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Antipolo City Hospital Annex IV (Mambugan)</strong></td>
+                        <td>City Government</td>
+                        <td>(02) 8687-1114 / 8687-1118 / 8687-1119</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Amang Rodriguez Memorial Medical Center</strong></td>
+                        <td>National Tertiary Hospital</td>
+                        <td>(02)  8941-5854 / 09638959929</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quirino Memorial Medical Center</strong></td>
+                        <td>National Tertiary Hospital</td>
+                        <td>(02) 5304-9800 / 09617855647</td>
+                    </tr>
+					     <tr>
+                        <td><strong>East Avenue Medical Center</strong></td>
+                        <td>National Tertiary Hospital</td>
+                        <td>09171549004</td>
+                    </tr>
+						<tr>
+                        <td><strong>National Kidney and Transplant Institute</strong></td>
+                        <td>National Tertiary Hospital</td>
+                        <td>(02)8981-0300 / 09176556298</td>
+                    </tr>
+						<tr>
+                        <td><strong>Philippine General Hospital</strong></td>
+                        <td>National Tertiary Hospital</td>
+                        <td>(02)8554-8456 / 8554-8484 </td>
+                    </tr>
+						<tr>
+                        <td><strong>Philippine Heart Center</strong></td>
+                        <td>National Tertiary Hospital</td>
+                        <td>(02)8925-2401 / 09190708651</td>
+                    </tr>
+					
+					    <tr>
+                        <td><strong>Lung Center of the Philippines</strong></td>
+                        <td>National Tertiary Hospital</td>
+                        <td>(02)8924-6101</td>
+                    </tr>
+						<tr>
+                        <td><strong>San Lazaro Hospital</strong></td>
+                        <td>National Tertiary Hospital</td>
+                        <td>(02)5309-9523 / 5309-9527</td>
+                    </tr>
+						<tr>
+                        <td><strong>National Children's Hospital</strong></td>
+                        <td>National Tertiary Hospital</td>
+                        <td>(02)8724-0656 / 09755144079</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Barangay Emergency Response Units -->
+        <div class="card">
+            <div class="section-title">📍 District 1 Barangay Health & Emergency Units</div>
+            <div class="contact-grid">
+                
+                <div class="contact-card">
+                    <h3>Bagong Nayon</h3>
+                    <p>Barangay Health Desk / Ambulance</p>
+					<p>0945-6248-906 / 0962-3912-390</p>
+                    <a href="" class="phone-link">📞 Call Unit</a>
+                </div>
+                <div class="contact-card">
+                    <h3>Beverly Hills</h3>
+                    <p>Barangay Health Desk / Ambulance</p>
+					<p>0930-0276-922 / 8658-3669 / 0966-6614-839</p>
+                    <a href="" class="phone-link">📞 Call Unit</a>
+                </div>
+                <div class="contact-card">
+                    <h3>Dela Paz</h3>
+                    <p>Barangay Health Desk / Ambulance</p>
+					<p>8260-0182 / 0960-604-4446</p>
+                    <a href="" class="phone-link">📞 Call Unit</a>
+                </div>
+                <div class="contact-card">
+                    <h3>Mambugan</h3>
+                    <p>Barangay Health Desk / Ambulance</p>
+					<p>0928-7767-525</p>
+                    <a href="" class="phone-link">📞 Call Unit</a>
+                </div>
+				     <div class="contact-card">
+                    <h3>Mayamot</h3>
+                    <p>Barangay Health Desk / Ambulance</p>
+					<p>0918-2887-373 / 8470-6121 / 8470-7935 / 8880-4373</p>
+                    <a href="" class="phone-link">📞 Call Unit</a>
+                </div>
+				    <div class="contact-card">
+                    <h3>Muntindilaw</h3>
+                    <p>Barangay Health Desk / Ambulance</p>
+					<p>8463-0534 / 0917-5151-764</p>
+                    <a href="" class="phone-link">📞 Call Unit</a>
+                </div>
+					<div class="contact-card">
+                    <h3>San Isidro</h3>
+                    <p>Barangay Health Desk / Ambulance</p>
+					<p>0933-8297-656 / 0968-1315-885</p>
+                    <a href="" class="phone-link">📞 Call Unit</a>
+                </div>
+					<div class="contact-card">
+                    <h3>Sta. Cruz</h3>
+                    <p>Barangay Health Desk / Ambulance</p>
+					<p>0928-6206-373 / 0912-9851-208 / 8534-1105</p>
+                    <a href="" class="phone-link">📞 Call Unit</a>
+                </div>
+            </div></div>
+			        <div class="card">
+            <div class="section-title">📍 District 2 Barangay Health & Emergency Units</div>
+            <div class="contact-grid">
+                
+                <div class="contact-card">
+                    <h3>Calawis</h3>
+                    <p>Barangay Health Desk / Ambulance</p>
+					<p>0994-8339-165</p>
+                    <a href="" class="phone-link">📞 Call Unit</a>
+                </div>
+                <div class="contact-card">
+                    <h3>Cupang</h3>
+                    <p>Barangay Health Desk / Ambulance</p>
+					<p>0968-4918-172 / 0910-5249-816 / 0953-6694-295</p>
+                    <a href="" class="phone-link">📞 Call Unit</a>
+                </div>
+                <div class="contact-card">
+                    <h3>Dalig</h3>
+                    <p>Barangay Health Desk / Ambulance</p>
+					<p>0919-8771-019 / 02-8636-5114</p>
+                    <a href="" class="phone-link">📞 Call Unit</a>
+                </div>
+                <div class="contact-card">
+                    <h3>Inarawan</h3>
+                    <p>Barangay Health Desk / Ambulance</p>
+					<p>0956-0845-977</p>
+                    <a href="" class="phone-link">📞 Call Unit</a>
+                </div>
+				     <div class="contact-card">
+                    <h3>San Jose</h3>
+                    <p>Barangay Health Desk / Ambulance</p>
+					<p>0966-4486-020 / 0915-3889-567 / 818-4641</p>
+                    <a href="" class="phone-link">📞 Call Unit</a>
+                </div>
+				    <div class="contact-card">
+                    <h3>San Juan</h3>
+                    <p>Barangay Health Desk / Ambulance</p>
+					<p>0968-6028-496</p>
+                    <a href="" class="phone-link">📞 Call Unit</a>
+                </div>
+					<div class="contact-card">
+                    <h3>San Luis</h3>
+                    <p>Barangay Health Desk / Ambulance</p>
+					<p>0956-4422-732 / 0967-2914-584</p>
+                    <a href="" class="phone-link">📞 Call Unit</a>
+                </div>
+					<div class="contact-card">
+                    <h3>San Roque</h3>
+                    <p>Barangay Health Desk / Ambulance</p>
+					<p>0935-5325-076 / 0922-4203-099 / 8696-7370</p>
+                    <a href="" class="phone-link">📞 Call Unit</a>
+                </div>
+            </div></div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Antipolo Patient Navigation & Referral System <br>Coded by: Erwin R. Alincastre. All Rights Reserved.
+    </div>
+
+</div>
+
+</body>
+</html>
