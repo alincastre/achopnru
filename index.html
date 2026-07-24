@@ -501,11 +501,37 @@ body.dark-mode .modal-card { background: #1e293b !important; color: #f1f5f9 !imp
 body.dark-mode .modal-card h3 { color: #f8fafc !important; }
 body.dark-mode .hotline-item { background: #334155 !important; color: #fff !important; }
 
+.pwa-install-btn {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.pwa-install-btn:hover {
+  background-color: #0056b3;
+}
+
+.pwa-install-btn:active {
+  transform: scale(0.98);
+}
 </style>
 </head>
 
 <body>
-
+<!-- Place inside your nav or status banner container -->
+<button id="pwaInstallBtn" class="pwa-install-btn" style="display: none;">
+  📲 Install App
+</button>
 <!-- NAVIGATION -->
 <div class="topnav">
     <a href="index.html">📊 Dashboard</a>
@@ -1224,7 +1250,75 @@ function fetchHospitalTally() {
 fetchHospitalTally();
 setInterval(fetchHospitalTally, 30000);
 
-</script>
+let deferredPrompt;
+const installBtn = document.getElementById('pwaInstallBtn');
 
+// 1. Listen for the install prompt event
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Prevent Chrome 76 and earlier from automatically showing the prompt
+  e.preventDefault();
+  // Stash the event so it can be triggered later
+  deferredPrompt = e;
+  // Show our custom install button
+  if (installBtn) {
+    installBtn.style.display = 'inline-flex';
+  }
+});
+
+// 2. Handle button click
+if (installBtn) {
+  installBtn.addEventListener('click', async () => {
+    if (!deferredPrompt) return;
+
+    // Show the native browser install prompt
+    deferredPrompt.prompt();
+
+    // Wait for the user to respond to the prompt
+    const { outcome } = await deferredPrompt.userChoice;
+    
+    if (outcome === 'accepted') {
+      console.log('User accepted the PWA install prompt');
+    } else {
+      console.log('User dismissed the PWA install prompt');
+    }
+
+    // Reset the deferred prompt variable (it can only be used once)
+    deferredPrompt = null;
+    
+    // Hide the button
+    installBtn.style.display = 'none';
+  });
+}
+
+// 3. Detect when the PWA is successfully installed
+window.addEventListener('appinstalled', () => {
+  console.log('PWA was installed successfully');
+  if (installBtn) {
+    installBtn.style.display = 'none';
+  }
+  deferredPrompt = null;
+});
+
+// 4. Hide button if already running as an installed PWA / standalone window
+if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
+  if (installBtn) {
+    installBtn.style.display = 'none';
+  }
+}
+
+</script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then((reg) => {
+          console.log('ACHO PNRU Service Worker registered successfully:', reg.scope);
+        })
+        .catch((err) => {
+          console.error('Service Worker registration failed:', err);
+        });
+    });
+  }
+</script>
 </body>
 </html>
