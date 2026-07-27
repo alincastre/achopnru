@@ -573,18 +573,24 @@ body.dark-mode .hotline-item { background: #334155 !important; color: #fff !impo
     </div>
 </div>
 
+
+
 <!-- PRIMARY METRICS -->
-<div class="cards">
+	<div class="cards">
     <div class="card">
         <h3><i class="fa-solid fa-hospital-user"></i> Total Referrals</h3>
         <h1 id="patientAssistanceTotal" class="big">0</h1>
+	  <class="card done">
+      <h3 class="card-title" >Total Home Visit</h3>
+      <h1 id="done-count" class="card-value">...</h1>
+	  <class="card new-patient">
+      <h3 class="card-title">New Patient</h3>
+      <h1 id="new-count" class="card-value">...</h1>		
     </div>
-
     <div class="card">
         <h3><i class="fa-solid fa-ambulance"></i> Emergency Transport Assistance</h3>
         <h1 id="emergencyTransport">163</h1>
     </div>
-
     <div class="card">
         <h3><i class="fa-solid fa-arrows-split-up-and-left"></i> Coordination Process</h3>
         <h4>Accepted</h4>
@@ -1063,7 +1069,7 @@ function fetchPrimaryMetrics() {
         classChart.update();
 
         // Update Sync Status
-        document.getElementById("syncText").textContent = "System Live";
+        document.getElementById("syncText").textContent = "System Online";
         countdownValue = 30;
       })
       .catch(error => {
@@ -1320,5 +1326,27 @@ if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.
     });
   }
 </script>
+<script>
+    // Paste your Google Apps Script Web App URL here
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwYPkEgPc6p3g-UWLcQmxqOMBF3gFYv_L7twAIAcdYumQnxLV3_hzuElGVV9w3fUi4G9Q/exec";
+
+    async function loadPatientStatuses() {
+      try {
+        const response = await fetch(SCRIPT_URL);
+        const data = await response.json();
+
+        // Update cards with individual values
+        document.getElementById("done-count").textContent = data.doneVisit.toLocaleString();
+        document.getElementById("new-count").textContent = data.newCount.toLocaleString();
+      } catch (error) {
+        console.error("Error fetching patient statuses:", error);
+        document.getElementById("done-count").textContent = "Err";
+        document.getElementById("new-count").textContent = "Err";
+      }
+    }
+
+    // Load data when page opens
+    loadPatientStatuses();
+  </script>
 </body>
 </html>
