@@ -171,7 +171,7 @@ body{
 }
 
 .card h3{ color:#0b166e; font-size:16px; }
-.card h1{ font-size:40px; margin-top:10px; color:#DC143C; }
+.card h1{ font-size:40px; margin-top:5px; color:#DC143C; }
 
 /* MODERN DISTRICT SECTION STYLES */
 .district-section-container {
@@ -535,11 +535,11 @@ body.dark-mode .hotline-item { background: #334155 !important; color: #fff !impo
 <!-- NAVIGATION -->
 <div class="topnav">
     <a href="index.html">📊 Dashboard</a>
-	<a href="about.html">ℹ️ About PNRU</a>
+    <a href="about.html">ℹ️ About PNRU</a>
     <a href="referral.html">📄 Patient Referral</a>
     <a href="ambulance.html">🚑 Emergency Medical Transport Services</a>
     <a href="homevisit.html">👨‍⚕️ Home Visit Check-up Services</a>
-	<a href="hotline.html">🚨 Contact & Hotlines</a>
+    <a href="hotline.html">🚨 Contact & Hotlines</a>
 </div>
 
 <!-- MAIN HEADER -->
@@ -573,24 +573,28 @@ body.dark-mode .hotline-item { background: #334155 !important; color: #fff !impo
     </div>
 </div>
 
-
-
 <!-- PRIMARY METRICS -->
-	<div class="cards">
+<div class="cards">
     <div class="card">
         <h3><i class="fa-solid fa-hospital-user"></i> Total Referrals</h3>
-        <h1 id="patientAssistanceTotal" class="big">0</h1>
-	  <class="card done">
-      <h3 class="card-title" >Total Home Visit</h3>
-      <h1 id="done-count" class="card-value">...</h1>
-	  <class="card new-patient">
-      <h3 class="card-title">On-Going</h3>
-      <h1 id="new-count" class="card-value">...</h1>		
+        <h1 id="col-g-total">...</h1>
+
+        <div style="margin-top: 15px;">
+            <h3 class="card-title" style="font-size: 14px;">Home Visit</h3>
+            <h1 id="done-count" style="font-size: 28px;">...</h1>
+        </div>
+
+        <div style="margin-top: 10px;">
+            <h3 class="card-title" style="font-size: 14px;">On-Going</h3>
+            <h1 id="new-count" style="font-size: 28px;">...</h1>		
+        </div>
     </div>
+
     <div class="card">
         <h3><i class="fa-solid fa-ambulance"></i> Emergency Transport Assistance</h3>
-        <h1 id="emergencyTransport">170</h1>
+        <h1 id="patientAssistanceTotal" class="big">0</h1>
     </div>
+
     <div class="card">
         <h3><i class="fa-solid fa-arrows-split-up-and-left"></i> Coordination Process</h3>
         <h4>Accepted</h4>
@@ -829,7 +833,7 @@ body.dark-mode .hotline-item { background: #334155 !important; color: #fff !impo
             <span class="modal-close" onclick="closeHotlineModal()">&times;</span>
         </div>
         <ul class="hotline-list">
-		    <li class="hotline-item">
+            <li class="hotline-item">
                 <span>DILG</span>
                 <a href="tel:911">911</a>
             </li>
@@ -840,12 +844,12 @@ body.dark-mode .hotline-item { background: #334155 !important; color: #fff !impo
             <li class="hotline-item">
                 <span>CDRRMO Rescue</span>
                 <a href="tel:8689-4564">8689-4564</a><br>
-				<a href="tel:8689-4576">8689-4576</a>
+                <a href="tel:8689-4576">8689-4576</a>
             </li>
             <li class="hotline-item">
                 <span>Antipolo OPSS</span>
                 <a href="tel: 8734-2470"> 8734-2470</a><br>
-				<a href="tel: 09120813209">09120813209</a>
+                <a href="tel: 09120813209">09120813209</a>
             </li>
             <li class="hotline-item">
                 <span>Antipolo BFP (Fire Dept)</span>
@@ -854,7 +858,7 @@ body.dark-mode .hotline-item { background: #334155 !important; color: #fff !impo
             <li class="hotline-item">
                 <span>Antipolo PNP (Police)</span>
                 <a href="tel: 0917157-7627"> 09171577627</a><br>
-				<a href="tel: 09985985717">09985985717</a>
+                <a href="tel: 09985985717">09985985717</a>
             </li>
         </ul>
     </div>
@@ -1259,94 +1263,78 @@ setInterval(fetchHospitalTally, 30000);
 let deferredPrompt;
 const installBtn = document.getElementById('pwaInstallBtn');
 
-// 1. Listen for the install prompt event
 window.addEventListener('beforeinstallprompt', (e) => {
-  // Prevent Chrome 76 and earlier from automatically showing the prompt
   e.preventDefault();
-  // Stash the event so it can be triggered later
   deferredPrompt = e;
-  // Show our custom install button
-  if (installBtn) {
-    installBtn.style.display = 'inline-flex';
-  }
+  if (installBtn) installBtn.style.display = 'inline-flex';
 });
 
-// 2. Handle button click
 if (installBtn) {
   installBtn.addEventListener('click', async () => {
     if (!deferredPrompt) return;
-
-    // Show the native browser install prompt
     deferredPrompt.prompt();
-
-    // Wait for the user to respond to the prompt
     const { outcome } = await deferredPrompt.userChoice;
-    
-    if (outcome === 'accepted') {
-      console.log('User accepted the PWA install prompt');
-    } else {
-      console.log('User dismissed the PWA install prompt');
-    }
-
-    // Reset the deferred prompt variable (it can only be used once)
     deferredPrompt = null;
-    
-    // Hide the button
     installBtn.style.display = 'none';
   });
 }
 
-// 3. Detect when the PWA is successfully installed
 window.addEventListener('appinstalled', () => {
-  console.log('PWA was installed successfully');
-  if (installBtn) {
-    installBtn.style.display = 'none';
-  }
+  if (installBtn) installBtn.style.display = 'none';
   deferredPrompt = null;
 });
 
-// 4. Hide button if already running as an installed PWA / standalone window
 if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
-  if (installBtn) {
-    installBtn.style.display = 'none';
-  }
+  if (installBtn) installBtn.style.display = 'none';
 }
-
 </script>
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js')
-        .then((reg) => {
-          console.log('ACHO PNRU Service Worker registered successfully:', reg.scope);
-        })
-        .catch((err) => {
-          console.error('Service Worker registration failed:', err);
-        });
-    });
-  }
-</script>
-<script>
-    // Paste your Google Apps Script Web App URL here
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwYPkEgPc6p3g-UWLcQmxqOMBF3gFYv_L7twAIAcdYumQnxLV3_hzuElGVV9w3fUi4G9Q/exec";
 
-    async function loadPatientStatuses() {
-      try {
-        const response = await fetch(SCRIPT_URL);
-        const data = await response.json();
+<!-- PATIENT STATUSES & COLUMN G TOTAL FETCH LOGIC -->
+<script>
+  // 1. Fetch Patient Statuses (Done / New)
+  const HOMEVISIT_URL = "https://script.google.com/macros/s/AKfycbwYPkEgPc6p3g-UWLcQmxqOMBF3gFYv_L7twAIAcdYumQnxLV3_hzuElGVV9w3fUi4G9Q/exec";
 
-        // Update cards with individual values
-        document.getElementById("done-count").textContent = data.doneVisit.toLocaleString();
-        document.getElementById("new-count").textContent = data.newCount.toLocaleString();
-      } catch (error) {
-        console.error("Error fetching patient statuses:", error);
-        document.getElementById("done-count").textContent = "Err";
-        document.getElementById("new-count").textContent = "Err";
-      }
+  async function loadPatientStatuses() {
+    try {
+      const response = await fetch(HOMEVISIT_URL);
+      const data = await response.json();
+
+      document.getElementById("done-count").textContent = (data.doneVisit || 0).toLocaleString();
+      document.getElementById("new-count").textContent = (data.newCount || 0).toLocaleString();
+    } catch (error) {
+      console.error("Error fetching patient statuses:", error);
+      document.getElementById("done-count").textContent = "Err";
+      document.getElementById("new-count").textContent = "Err";
     }
+  }
 
-    // Load data when page opens
-    loadPatientStatuses();
-  </script>
+  // 2. Fetch Column G Total (Total Referrals: 324)
+  const TALLY_URL = "https://script.google.com/macros/s/AKfycby51OVUbdVrpFAIQKug8h9zhRKcD0D5bb4ZaKtuHOTO2z-A-Fys5yvmWWmHEy2sjvY/exec";
+
+  async function fetchColumnGTotal() {
+    const totalElem = document.getElementById("col-g-total");
+    
+    try {
+      const response = await fetch(TALLY_URL, { redirect: "follow" });
+      const data = await response.json();
+
+      if (data.error) {
+        totalElem.textContent = "Error";
+        console.error(data.error);
+        return;
+      }
+
+      // Display totalCount (324)
+      totalElem.textContent = (data.totalCount || 0).toLocaleString();
+    } catch (err) {
+      console.error("Error loading total:", err);
+      totalElem.textContent = "Error";
+    }
+  }
+
+  // Execute on load
+  loadPatientStatuses();
+  fetchColumnGTotal();
+</script>
 </body>
 </html>
