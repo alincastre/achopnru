@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospital Referral Tally Board | Antipolo City PNRU</title>
+  
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <style>
+    :root {
+      --primary-navy: #0b166e;
+      --accent-red: #DC143C;
+      --accent-red-hover: #b01030;
+      --bg-slate: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-slate);
+      color: var(--text-main);
+      padding-bottom: 40px;
+    }
+
+    /* PNRU Navigation Bar */
+    .topnav {
+      background-color: var(--primary-navy);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      height: 60px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .topnav .brand {
+      color: #ffffff;
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .topnav .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .topnav .nav-links a {
+      color: #e2e8f0;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .topnav .nav-links a:hover {
+      background-color: var(--accent-red);
+      color: #ffffff;
+    }
+
+    .topnav .nav-links a.active {
+      background-color: var(--accent-red);
+      color: #ffffff;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1100px;
+      margin: 25px auto;
+      padding: 0 15px;
+    }
+
+    /* Page Header Card */
+    .header-banner {
+      background: linear-gradient(135deg, var(--primary-navy) 0%, #1e293b 100%);
+      color: white;
+      padding: 22px 25px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(11, 22, 110, 0.15);
+      border-left: 6px solid var(--accent-red);
+    }
+
+    .header-banner h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .header-banner p {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-top: 3px;
+    }
+
+    .btn-refresh {
+      background: var(--accent-red);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.2s ease-in-out;
+      box-shadow: 0 2px 6px rgba(220, 20, 60, 0.3);
+    }
+
+    .btn-refresh:hover {
+      background: var(--accent-red-hover);
+    }
+
+    /* Cards */
+    .card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 22px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      border: 1px solid var(--border-color);
+      margin-bottom: 25px;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      color: var(--primary-navy);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Table Formatting */
+    .table-container {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.92rem;
+    }
+
+    th {
+      background-color: #f1f5f9;
+      color: var(--primary-navy);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      letter-spacing: 0.5px;
+    }
+
+    td:first-child, th:first-child {
+      text-align: left;
+    }
+
+    /* Tally Status Colors */
+    .txt-coordinated { color: #16a34a; font-weight: 700; }
+    .txt-refused { color: #dc2626; font-weight: 700; }
+    .txt-ongoing { color: #d97706; font-weight: 700; }
+    .txt-uncontacted { color: #4b5563; font-weight: 700; }
+
+    #loadingState {
+      text-align: center;
+      padding: 35px;
+      font-weight: 600;
+      color: var(--primary-navy);
+    }
+
+    .chart-wrapper {
+      position: relative;
+      height: 380px;
+      width: 100%;
+    }
+
+    /* Responsive Mobile Navigation */
+    @media (max-width: 640px) {
+      .topnav {
+        padding: 0 12px;
+      }
+      .topnav .brand {
+        font-size: 1rem;
+      }
+      .topnav .nav-links a {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+      }
+      .header-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .btn-refresh {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Matching Antipolo PNRU Navigation Bar -->
+  <nav class="topnav">
+    <a href="index.html" class="brand">
+      <span>Antipolo City Health PNRU</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Main Dashboard</a>
+      <a href="hospital-tally.html" class="active">Hospital Tally Board</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="header-banner">
+      <div>
+        <h1>Hospital Referral Tally Board</h1>
+        <p>Patient Navigation & Referral Unit (PNRU) Real-Time Outcome Summary</p>
+      </div>
+      <button class="btn-refresh" onclick="fetchReferralData()">Refresh Data</button>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="loadingState">Loading tally data from Google Sheets...</div>
+
+    <!-- Table Section -->
+    <div class="card" id="tableCard" style="display: none;">
+      <div class="card-title">Summary Breakdown by Hospital (Sorted Highest to Lowest)</div>
+      <div class="table-container">
+        <table id="referralTable">
+          <thead>
+            <tr>
+              <th>Hospital Name</th>
+              <th>Coordinated</th>
+              <th>Refused</th>
+              <th>On-going</th>
+              <th>Cannot Be Contacted</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Dynamic Data Injected Here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Chart Section -->
+    <div class="card" id="chartCard" style="display: none;">
+      <div class="card-title">Hospital Outcome Comparison Graph</div>
+      <div class="chart-wrapper">
+        <canvas id="referralChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // PASTE YOUR DEPLOYED GOOGLE APPS SCRIPT WEB APP URL HERE
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxvIb8Ru6lgVixq3siq6mFv1Bj0TwSDYQFx74MVltWLpigUx1Zl13mXmZEobOXAjHM/exec";
+
+    let chartInstance = null;
+
+    async function fetchReferralData() {
+      const loadingEl = document.getElementById("loadingState");
+      const tableCard = document.getElementById("tableCard");
+      const chartCard = document.getElementById("chartCard");
+
+      loadingEl.style.display = "block";
+      loadingEl.innerText = "Fetching live tally from Google Sheets...";
+
+      try {
+        const response = await fetch(SCRIPT_URL);
+        const result = await response.json();
+
+        if (result.status === "success") {
+          loadingEl.style.display = "none";
+          tableCard.style.display = "block";
+          chartCard.style.display = "block";
+
+          renderTableAndChart(result.data);
+        } else {
+          loadingEl.innerText = "Error: " + result.message;
+        }
+      } catch (err) {
+        console.error(err);
+        loadingEl.innerText = "Failed to fetch data. Check your Web App URL and deployment access ('Anyone').";
+      }
+    }
+
+    function renderTableAndChart(data) {
+      const tbody = document.querySelector("#referralTable tbody");
+      tbody.innerHTML = "";
+
+      const hospitals = Object.keys(data);
+
+      if (hospitals.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6">No referral records found starting from row 920.</td></tr>`;
+        return;
+      }
+
+      // Sort array from highest total to lowest
+      const sortedHospitals = hospitals.map(hosp => {
+        const counts = data[hosp];
+        const coordinated = counts["Coordinated"] || 0;
+        const refused = counts["Refused"] || 0;
+        const ongoing = counts["On-going"] || 0;
+        const uncontacted = counts["CANNOT BE CONTACTED"] || 0;
+        const total = coordinated + refused + ongoing + uncontacted;
+
+        return {
+          name: hosp,
+          coordinated,
+          refused,
+          ongoing,
+          uncontacted,
+          total
+        };
+      })
+      .sort((a, b) => b.total - a.total);
+
+      const labels = [];
+      const coordinatedList = [];
+      const refusedList = [];
+      const ongoingList = [];
+      const uncontactedList = [];
+
+      sortedHospitals.forEach(item => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td><strong>${item.name}</strong></td>
+          <td class="txt-coordinated">${item.coordinated}</td>
+          <td class="txt-refused">${item.refused}</td>
+          <td class="txt-ongoing">${item.ongoing}</td>
+          <td class="txt-uncontacted">${item.uncontacted}</td>
+          <td><strong>${item.total}</strong></td>
+        `;
+        tbody.appendChild(tr);
+
+        labels.push(item.name);
+        coordinatedList.push(item.coordinated);
+        refusedList.push(item.refused);
+        ongoingList.push(item.ongoing);
+        uncontactedList.push(item.uncontacted);
+      });
+
+      // Render Bar Chart
+      const ctx = document.getElementById("referralChart").getContext("2d");
+
+      if (chartInstance) {
+        chartInstance.destroy();
+      }
+
+      chartInstance = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [
+            { label: "Coordinated", data: coordinatedList, backgroundColor: "#22c55e" },
+            { label: "Refused", data: refusedList, backgroundColor: "#ef4444" },
+            { label: "On-going", data: ongoingList, backgroundColor: "#f59e0b" },
+            { label: "Cannot Be Contacted", data: uncontactedList, backgroundColor: "#6b7280" }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: "top" }
+          },
+          scales: {
+            y: { beginAtZero: true, ticks: { stepSize: 1 } }
+          }
+        }
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", fetchReferralData);
+  </script>
+</body>
+</html>
