@@ -223,17 +223,65 @@
         width: 100%;
       }
     }
-  </style>
+  
+/* Hamburger Menu */
+.menu-toggle{
+display:none;
+background:#0b166e;
+color:#fff;
+border:none;
+width:100%;
+padding:15px 18px;
+font-size:20px;
+font-weight:700;
+cursor:pointer;
+}
+@media(max-width:768px){
+.menu-toggle{display:block}
+.topnav{
+display:block!important;
+height:auto!important;
+padding:0!important;
+}
+.topnav .brand{
+display:block;
+padding:15px 18px;
+}
+.topnav .nav-links{
+display:none;
+flex-direction:column;
+width:100%;
+background:#0b166e;
+}
+.topnav .nav-links.show{
+display:flex;
+}
+.topnav .nav-links a{
+display:block;
+padding:14px 18px;
+border-top:1px solid rgba(255,255,255,.15);
+}
+.header-banner{
+flex-direction:column;
+align-items:flex-start;
+gap:15px;
+}
+.btn-refresh{width:100%}
+.chart-wrapper{height:320px}
+}
+
+</style>
 </head>
 <body>
 
   <!-- Matching Antipolo PNRU Navigation Bar -->
-  <nav class="topnav">
+  <button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+<nav class="topnav">
     <a href="index.html" class="brand">
       <span>Antipolo City Health PNRU</span>
     </a>
     <div class="nav-links">
-      <a href="index.html">📊Dashboard</a>
+      <a href="index.html">Main Dashboard</a>
     </div>
   </nav>
 
@@ -402,5 +450,19 @@
 
     document.addEventListener("DOMContentLoaded", fetchReferralData);
   </script>
+
+<script>
+function toggleMenu(){
+ document.querySelector(".nav-links").classList.toggle("show");
+}
+document.querySelectorAll(".nav-links a").forEach(link=>{
+ link.addEventListener("click",()=>{
+   if(window.innerWidth<=768){
+      document.querySelector(".nav-links").classList.remove("show");
+   }
+ });
+});
+</script>
 </body>
+
 </html>

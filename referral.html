@@ -59,10 +59,45 @@ font-weight:500;
 .topnav{justify-content:flex-start;}
 }
 
+
+/* Responsive Hamburger Menu */
+.menu-toggle{
+display:none;
+width:100%;
+padding:14px 18px;
+background:#0b166e;
+color:#fff;
+border:none;
+font-size:20px;
+font-weight:600;
+cursor:pointer;
+}
+@media(max-width:768px){
+.menu-toggle{display:block}
+.topnav{
+display:none!important;
+flex-direction:column!important;
+align-items:stretch;
+padding:0!important;
+}
+.topnav.show{display:flex!important}
+.topnav a{
+display:block;
+padding:14px 18px;
+border-bottom:1px solid rgba(255,255,255,.15);
+}
+.header{font-size:20px!important}
+.container{padding:12px!important}
+.card{padding:16px!important}
+.form-grid,.vitals{grid-template-columns:1fr!important}
+input,select,textarea,button{width:100%!important;font-size:16px}
+}
+
 </style>
 
 <body>
-<div class="topnav">
+<button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+<div class="topnav" id="topnav">
     <a href="index.html">📊 Dashboard</a>
     <a href="about.html">ℹ️ About PNRU</a>
     <a href="referral.html">📄 Patient Referral</a>
@@ -353,5 +388,19 @@ alert("Error saving data.");
 
 </script>
 
+
+<script>
+function toggleMenu(){
+ document.getElementById('topnav').classList.toggle('show');
+}
+document.querySelectorAll('#topnav a').forEach(link=>{
+ link.addEventListener('click',()=>{
+   if(window.innerWidth<=768){
+     document.getElementById('topnav').classList.remove('show');
+   }
+ });
+});
+</script>
 </body>
+
 </html>

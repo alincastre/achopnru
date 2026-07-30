@@ -401,6 +401,19 @@ body.dark-mode .view-btn.active {
     color: #38bdf8 !important;
 }
 
+
+/* Hamburger Navigation */
+.menu-toggle{display:none;background:#0b166e;color:#fff;border:none;padding:10px 14px;font-size:22px;width:100%;cursor:pointer}
+@media (max-width:768px){
+.menu-toggle{display:block}
+.topnav{display:none;flex-direction:column;align-items:stretch;padding:0}
+.topnav.show{display:flex}
+.topnav a{display:block;border-bottom:1px solid rgba(255,255,255,.1)}
+.header-title-container{flex-wrap:wrap}
+.header-logo{height:48px}
+.header h2{font-size:20px}
+}
+
 /* RESPONSIVE */
 @media (max-width:768px){
     .topnav{ justify-content:flex-start; }
@@ -543,7 +556,8 @@ body {
   📲 Install App
 </button>
 <!-- NAVIGATION -->
-<div class="topnav">
+<button class="menu-toggle" onclick="toggleMenu()"><i class="fa fa-bars"></i> Menu</button>
+<div class="topnav" id="topnav">
     <a href="index.html">📊Dashboard</a>
 	<a href="tally.html">🏥Hospital Tally</a>
     <a href="about.html">ℹ️About PNRU</a>
@@ -1298,6 +1312,19 @@ window.addEventListener('appinstalled', () => {
 if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
   if (installBtn) installBtn.style.display = 'none';
 }
+
+function toggleMenu(){
+ const nav=document.getElementById('topnav');
+ nav.classList.toggle('show');
+}
+document.querySelectorAll('#topnav a').forEach(a=>{
+ a.addEventListener('click',()=>{
+   if(window.innerWidth<=768){
+     document.getElementById('topnav').classList.remove('show');
+   }
+ });
+});
+
 </script>
 
 <!-- PATIENT STATUSES & COLUMN G TOTAL FETCH LOGIC -->

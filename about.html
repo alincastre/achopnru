@@ -254,13 +254,31 @@ body{
     .card{padding:15px;}
 }
 
+
+/* Responsive Hamburger */
+.menu-toggle{
+display:none;width:100%;background:#0b166e;color:#fff;border:none;
+padding:14px;font-size:20px;font-weight:600;cursor:pointer}
+@media(max-width:768px){
+.menu-toggle{display:block}
+.topnav{display:none;flex-direction:column;align-items:stretch;padding:0}
+.topnav.show{display:flex}
+.topnav a{display:block;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.12)}
+.header{font-size:20px;padding:16px}
+.container{width:100%;padding:12px}
+.card{padding:16px}
+.node,.level-multi .node{min-width:100%;width:100%!important}
+img,svg{max-width:100%;height:auto}
+}
+
 </style>
 
 </head>
 
 <body>
 
-<div class="topnav">
+<button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+<div class="topnav" id="topnav">
     <a href="index.html">📊 Dashboard</a>
     <a href="about.html">ℹ️ About PNRU</a>
     <a href="referral.html">📄 Patient Referral</a>
@@ -279,7 +297,7 @@ body{
 
         <!-- Core Mandate & Functions -->
         <div class="card">
-            <div class="section-title">📌 Mandate & Core Functions</div>
+            <div class="section-title">📌 Mission and Vision</div>
             <div class="grid-2">
                 <div class="info-box">
                     <h3>Our Mission</h3>
@@ -288,17 +306,40 @@ body{
                 <div class="info-box">
                     <h3>Our Vision</h3>
                     <p>Effective and efficient means of managing the client’s transitions through medical and social services. Clients are assigned to a Patient Navigator to assist them in entering medical care, clarifying medical concerns, and providing referrals.</p>
-                </div>
-                <div class="info-box">
-                    <h3>Scope of Services</h3>
-                    <ul>
-                        <li>24/7 Inter-facility referral coordination</li>
-                        <li>Emergency transport dispatch and guidance</li>
-                        <li>Outpatient navigation and diagnostic scheduling</li>
-                    </ul>
-                </div>
-            </div>
+                </div></div>
+    <!-- Core Responsibilities with Illustrated Header Icons -->
+    <div class="card">
+      <div class="section-title">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0b166e" stroke-width="2.5"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        Core Operations
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-header">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#DC143C" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            <h3>Inter-Facility Navigation</h3>
+          </div>
+          <p>Coordinates directly with hospital ERs and admitting units to verify bed availability, doctor specialties, and ICU capacity before patient conduction.</p>
         </div>
+
+        <div class="service-card">
+          <div class="service-header">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0b166e" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            <h3>Emergency Transport Dispatch</h3>
+          </div>
+          <p>Dispatches city ambulance transport teams for urgent surgical, pediatric, trauma, and obstetric patient transfers.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-header">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <h3>Public Health Assistance</h3>
+          </div>
+          <p>Guides residents regarding Animal Bite Center schedules, laboratory availability, diagnostic consultations, and local financial assistance programs.</p>
+        </div>
+      </div>
+    </div>
 
         <!-- Purpose & Services -->
         <div class="card">
@@ -416,5 +457,14 @@ body{
 
 </div>
 
+
+<script>
+function toggleMenu(){
+document.getElementById('topnav').classList.toggle('show');
+}
+document.querySelectorAll('#topnav a').forEach(a=>{
+a.onclick=()=>{if(window.innerWidth<=768){document.getElementById('topnav').classList.remove('show');}};
+});
+</script>
 </body>
 </html>

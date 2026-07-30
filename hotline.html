@@ -177,6 +177,22 @@ tr:hover{
     }
 }
 
+
+/* Responsive Hamburger */
+.menu-toggle{
+display:none;width:100%;background:#0b166e;color:#fff;border:none;
+padding:14px 18px;font-size:20px;font-weight:600;cursor:pointer}
+@media(max-width:768px){
+.menu-toggle{display:block}
+.topnav{display:none!important;flex-direction:column!important;align-items:stretch;padding:0!important}
+.topnav.show{display:flex!important}
+.topnav a{display:block;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.15)}
+.container{width:100%!important;max-width:100%!important;padding:12px!important}
+.card{padding:16px!important}
+.contact-grid{grid-template-columns:1fr!important}
+.header{font-size:20px!important;padding:16px!important}
+}
+
 </style>
 
 <style id="chatgpt-responsive-patch">
@@ -196,7 +212,8 @@ body{display:block!important}
 
 <body>
 
-<div class="topnav">
+<button class="menu-toggle" onclick="toggleMenu()">☰ Menu</button>
+<div class="topnav" id="topnav">
     <a href="index.html">📊 Dashboard</a>
 	<a href="about.html">ℹ️ About PNRU</a>
     <a href="referral.html">📄 Patient Referral</a>
@@ -458,5 +475,18 @@ body{display:block!important}
 
 </div>
 
+
+<script>
+function toggleMenu(){
+ document.getElementById('topnav').classList.toggle('show');
+}
+document.querySelectorAll('#topnav a').forEach(a=>{
+ a.addEventListener('click',()=>{
+   if(window.innerWidth<=768){
+    document.getElementById('topnav').classList.remove('show');
+   }
+ });
+});
+</script>
 </body>
 </html>
